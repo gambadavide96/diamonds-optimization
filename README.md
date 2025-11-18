@@ -1,6 +1,6 @@
-# Optimization Project
+# 🤖 Optimization Project
 This project aims to study the behavior and convergence properties of several optimization algorithms when applied to a **Ridge Regression** problem.
-The goal is to compare algorithms in terms of convergence speed, computational cost stability, and accuracy, using **diamonds dataset**.
+The goal is to compare algorithms in terms of convergence speed, computational cost stability, and accuracy, using the **Diamonds dataset**.
 
 ## 📌 Objectives
 - Implement **Ridge Regression** as a convex optimization problem.
