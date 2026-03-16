@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1773655341.452 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1773655343.55616 0
-  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1773655338.92764 16271 4469b9db6439f4217c7ea32ab0472c3a ""
+["pdflatex"] 1773655729.96932 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1773655732.34248 0
+  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1773655729.69154 16280 0ac2850ac56d2e4f2b69b115e257f29c ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1741388039 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1741388039 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1741388039 5466553 2748998d7db8078826afa1f272036265 ""
@@ -226,10 +226,10 @@
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1741388039 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346062 5b41f5f1f86715961a7a7134091efb1b ""
-  "slide.aux" 1773655343.37309 2754 5815ccc49fee9dda9b809311c7de478a "pdflatex"
-  "slide.nav" 1773655343.37446 1853 3d3af853e0752fc75bf550a83110b9cc "pdflatex"
-  "slide.out" 1773655342.31806 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "slide.tex" 1773655338.92764 16271 4469b9db6439f4217c7ea32ab0472c3a ""
+  "slide.aux" 1773655732.12808 2754 5815ccc49fee9dda9b809311c7de478a "pdflatex"
+  "slide.nav" 1773655732.13052 1853 3d3af853e0752fc75bf550a83110b9cc "pdflatex"
+  "slide.out" 1773655730.89528 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "slide.tex" 1773655729.69154 16280 0ac2850ac56d2e4f2b69b115e257f29c ""
   (generated)
   "slide.aux"
   "slide.log"
