@@ -403,6 +403,9 @@ INPUT ../images/normal-parabola-ridge.png
 INPUT ../images/normal-parabola-ridge.png
 INPUT ../images/normal-parabola-ridge.png
 INPUT ../images/normal-parabola-ridge.png
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 OUTPUT slide.nav
 OUTPUT slide.toc
 OUTPUT slide.snm

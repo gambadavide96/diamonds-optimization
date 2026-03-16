@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  16 MAR 2026 18:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  16 MAR 2026 19:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -867,6 +867,62 @@ Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line
 [35
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 632.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 632.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 632.
+
+
+[36
+
+]
+
+[37
+
+]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 670.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 670.
+
+
+[38
+
+]
+
+[39
+
+]
+
+[40
+
+]
+
+[41
+
+]
+
+[42
+
+]
+
+[43
+
+]
+
+[44
+
+]
+Overfull \vbox (4.21759pt too high) detected at line 799
+ []
+
+
+
+[45
+
+]
 \tf@nav=\write6
 \openout6 = `slide.nav'.
 
@@ -885,18 +941,18 @@ Package rerunfilecheck Info: File `slide.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22093 strings out of 473190
- 436354 string characters out of 5705898
+ 22141 strings out of 473190
+ 436820 string characters out of 5705898
  796470 words of memory out of 5000000
- 44803 multiletter control sequences out of 15000+600000
- 572718 words of font info for 86 fonts, out of 8000000 for 9000
+ 44831 multiletter control sequences out of 15000+600000
+ 573600 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,602b,596s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slide.pdf (35 pages, 565880 bytes).
+Output written on slide.pdf (45 pages, 594112 bytes).
 PDF statistics:
- 1133 PDF objects out of 1200 (max. 8388607)
- 985 compressed objects within 10 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 1415 PDF objects out of 1440 (max. 8388607)
+ 1244 compressed objects within 13 object streams
+ 91 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -566,7 +566,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Gradient Descent - Smoothness}
+\begin{frame}{Gradient Descent - Smoothness property}
 
     \vspace{0.2cm}
     Previously we have seen that function is \textbf{$L$-Smooth}. The curvature does not change abruptly; the gradient does not fluctuate wildly. The function always stays "below" a certain bounding parabola. 
@@ -583,7 +583,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Gradient Descent - Smoothness}
+\begin{frame}{Gradient Descent - Smoothness property}
     \small
     Final results per $\lambda$ using the optimal step size ($\gamma = 1/L$):
 
@@ -611,6 +611,190 @@
         \item \textbf{Optimal Steps:} The safe learning rate ($\gamma \approx 0.23$) is $\sim$2,300x larger than our naive guess.
         \item \textbf{Lightning Fast:} For $\lambda = 1.0$, it perfectly converges in just 15 iterations (down from 31,209).
         \item \textbf{Perfect Accuracy:} Final loss values now exactly match our analytical baseline.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nesterov's Accelerated Gradient Descent}
+    Now we implement the \textbf{Accelerated Gradient Descent} algorithm. This method improves standard gradient descent by computing the next iteration point as a dynamically weighted average between a conservative "smooth" step and a more "aggressive" step. 
+
+    \vspace{0.3cm}
+    Mathematically, choosing arbitrary initial points $\mathbf{z}_0 = \mathbf{u}_0 = \mathbf{w}_0$, for $t \ge 0$ we set:
+
+    $$\mathbf{u}_{t+1} := \mathbf{w}_t - \frac{1}{L} \nabla f(\mathbf{w}_t)$$
+    $$\mathbf{z}_{t+1} := \mathbf{z}_t - \frac{t+1}{2L} \nabla f(\mathbf{w}_t)$$
+    $$\mathbf{w}_{t+1} := \frac{t+1}{t+3} \mathbf{u}_{t+1} + \frac{2}{t+3} \mathbf{z}_{t+1}$$
+
+    \begin{itemize}
+        \item \texttt{w} represents the main weight vector.
+        \item \texttt{u} represents the prudent/smooth update.
+        \item \texttt{z} represents the aggressive update.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nesterov's Accelerated Gradient Descent}
+    Following the same testing framework used previously: we loop through our predefined \texttt{lambda\_set}. 
+    
+    \vspace{0.4cm}
+    For each $\lambda$, we calculate the exact $L$-smoothness parameter to scale our steps correctly. The algorithm logs the weights and execution time, and features an early stopping mechanism (\texttt{tol=1e-6}) that halts execution once the loss successfully converges to our pre-calculated theoretical optimum (\texttt{opt\_value}).
+\end{frame}
+
+\begin{frame}{Nesterov's Accelerated Gradient Descent}
+    \small
+    Final results per $\lambda$ using Accelerated Gradient Descent:
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.5\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04266 & 203 & 0.10 \\
+            $10^{-4}$ & 0.04276 & 202 & 0.12 \\
+            $10^{-3}$ & 0.04369 & 152 & 0.07 \\
+            $0.01$    & 0.04978 & 86  & 0.05 \\
+            $0.1$     & 0.07101 & 23  & 0.01 \\
+            $1.0$     & 0.16355 & 12  & 0.005 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+    \begin{itemize}
+        \item \textbf{Massive Speedup:} For ill-conditioned problems ($\lambda = 10^{-5}$), iterations go down from 8,353 to just 203 ($\sim$40x improvement).
+        \item \textbf{Faster Convergence Rate:} Validates the theoretical leap from $O(1/T)$ to $O(1/T^2)$.
+        \item \textbf{Diminishing Returns:} For $\lambda = 1.0$ (a steep, well-conditioned bowl), the advantage is marginal (12 vs. 15 iterations).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Stochastic Gradient Descent with Mini-batches}
+    In standard Gradient Descent, computing the exact gradient requires evaluating the entire dataset (all $n$ samples) at every single step. While highly accurate, this becomes computationally prohibitive and slow for massive datasets. \textbf{Mini-batch Stochastic Gradient Descent (SGD)} addresses this bottleneck by approximating the true gradient using a much smaller, randomly selected subset of the data of size $m$ (where $m < n$). 
+
+    \vspace{0.3cm}
+    Mathematically, starting from an initial point $\mathbf{x}_0 \in \mathbb{R}^d$, at each iteration $t$ we choose a random subset of indices $\{h_1, \dots, h_m\} \subseteq \{1, \dots, N\}$ and update the weights using a learning rate $\gamma_t \ge 0$:
+
+    $$\mathbf{w}_{t+1} := \mathbf{w}_t - \gamma_t \frac{1}{m} \sum_{j=1}^m \nabla f_{h_j}(\mathbf{w}_t)$$
+\end{frame}
+
+\begin{frame}{Stochastic Gradient Descent with Mini-batches}
+    To realize the random subset selection, the algorithm operates in "epochs". At the start of an epoch, the entire dataset is randomly shuffled (\texttt{np.random.permutation}). Within an epoch, a loop then sequentially iterates over this shuffled data in chunks of size \texttt{batch\_size} (our $m$). 
+    
+    \vspace{0.3cm}
+    The \texttt{minibatch\_gradient} function then calculates the scaled gradient on this small chunk, and the main loop updates the weights.
+
+    \vspace{0.3cm}
+    Just as we did in our initial experiments with standard Gradient Descent, we will establish a baseline by using a simple, "naive" constant learning rate of $\gamma = 10^{-4}$, with a \texttt{batch\_size} = 1000.
+\end{frame}
+
+\begin{frame}{Stochastic Gradient Descent with Mini-batches}
+    \small
+    Final results per $\lambda$ using Stochastic Gradient Descent with a naive learning rate ($\gamma = 0.0001$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lcccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{$\gamma$} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.05510 & 0.0001 & 50000 & 12.79 \\
+            $10^{-4}$ & 0.05512 & 0.0001 & 50000 & 13.10 \\
+            $10^{-3}$ & 0.05528 & 0.0001 & 50000 & 13.14 \\
+            $0.01$    & 0.05689 & 0.0001 & 50000 & 12.84 \\
+            $0.1$     & 0.07171 & 0.0001 & 50000 & 13.54 \\
+            $1.0$     & 0.16356 & 0.0001 & 31254 & 7.35 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+    \begin{itemize}
+        \item Results are almost identical to our initial Naive Full-Batch Gradient Descent. The algorithm still hits the hard limit of 50,000 iterations for small $\lambda$ values, getting stuck at a suboptimal loss of roughly $0.05510$ instead of reaching the true minimum ($\approx 0.04266$).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mini batches SGD - Decaying Learning Rate}
+    Now try doing a mini-batch SGD with a better learning rate using the fact that the objective function is $\mu$-strongly convex. From Tame Strong convexity, the learning rate to use is:
+    
+    $$\gamma_t = \frac{2}{\mu(t+1)}$$
+    
+    and it decays over each iteration.
+
+    \vspace{0.4cm}
+    However, applying this formula naively when our regularization parameter $\lambda$ is small leads to immediate divergence.
+
+    \vspace{0.2cm}
+    \begin{itemize}
+        \item If $\mu$ is very small, the initial step size $\gamma_t$ becomes very large. 
+        \item This massively exceeds our theoretical $L$-smoothness "speed limit" ($2/L$), causing the algorithm to diverge.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mini batches SGD - Decaying Learning Rate}
+    \small
+    Looking closely at our calculated strong convexity parameters ($\mu$), we can demonstrate why applying the classic theoretical decay rate $\gamma_t = \frac{2}{\mu(t+1)}$ causes divergence. 
+
+    \vspace{0.3cm}
+    For our smallest ridge penalization ($\lambda = 10^{-5}$), the minimum curvature of our loss function is extremely flat, resulting in $\mu \approx 0.00130$. If we plug this value into the pure "Tame Strong Convexity" formula to calculate the learning rate for our very first iteration ($t=0$), we get:
+    $$\gamma_0 = \frac{2}{0.00130} \approx 1538$$
+
+    \vspace{0.3cm}
+    This initial step size is catastrophically large. As we established earlier, the absolute maximum safe step size before an algorithm diverges is bounded by the smoothness parameter $(2/L) \approx 0.46.$ An initial step of $1538$ massively violates this theoretical "speed limit".
+
+    \vspace{0.3cm}
+    This same issue occurs across all other small values of the ridge regularization parameter $\lambda$.
+\end{frame}
+
+\begin{frame}{Mini batches SGD - Decaying Learning Rate}
+    \small
+    To safely apply the optimal decay rate by the Tame Strong Convexity, we propose an adjusted learning rate:
+    
+    $$\gamma_t = \frac{2}{L + \mu(t+1)}$$
+
+    \vspace{0.4cm}
+    This cover two fundamental concepts in optimization theory:
+    
+    \vspace{0.2cm}
+    \begin{itemize}
+        \item \textbf{Initial Stability ($t=0$):} At the very first iteration, the learning rate evaluates to exactly $\frac{2}{L+\mu} < \frac{2}{L}$. This perfectly respect the theoretical optimal speed limit for smooth strongly convex functions, acting as a safety cap that prevents the algorithm from diverging, regardless of how small $\mu$ is.
+        
+        \vspace{0.3cm}
+        \item \textbf{Asymptotic Convergence ($t \to \infty$):} As the iterations progress, the $L$ term becomes dominated by $\mu t$. The learning rate transitions to approximate $\frac{2}{\mu t}$, strictly adhering to the $O(1/t)$ decay rate required to suppress the stochastic noise of the mini-batches and guarantee convergence to the global minimum.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mini batches SGD - Decaying Learning Rate}
+    \small
+    Final results per $\lambda$ using the adjusted decaying learning rate ($\gamma_t$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.5\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04266 & 14199 & 3.58 \\
+            $10^{-4}$ & 0.04276 & 15115 & 3.94 \\
+            $10^{-3}$ & 0.04369 & 8104  & 2.23 \\
+            $0.01$    & 0.04978 & 1730  & 0.71 \\
+            $0.1$     & 0.07101 & 404   & 0.13 \\
+            $1.0$     & 0.16355 & 101   & 0.04 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+    \begin{itemize}
+        \item \textbf{Guaranteed Convergence:} Safely bounded initial steps eliminate chaotic bouncing, achieving perfect convergence to the exact global minimum for every $\lambda$.
+        \item \textbf{Variance Trade-off:} For ill-conditioned problems ($\lambda = 10^{-5}$), SGD is actually slower than full-batch GD ($\sim$14k vs. 8.3k iterations). 
+        \item \textbf{Noise Reduction:} To settle exactly at the minimum, the decaying learning rate must become extremely small, forcing thousands of tiny, cautious steps to average out mini-batch noise.
     \end{itemize}
 \end{frame}
 
