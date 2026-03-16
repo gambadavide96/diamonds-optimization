@@ -27,7 +27,7 @@
     In particular, the focus is on:
     \begin{itemize}
         \item Evaluating the respective algorithms convergence rates.
-        \item Investigating how theoretical properties of the objective function (such as Smoothness and Strongly Convexity) have an impact to the results.
+        \item Investigating how theoretical properties of the objective function (such as Smoothness and Strongly Convexity) have an impact to results.
         \item Evaluating how the $L_2$ regularization parameter ($\lambda$) of Ridge Regression influences speed and efficiency of the algorithms.
     \end{itemize}
     
@@ -51,16 +51,25 @@
     \vspace{0.3cm}
     \textbf{Feature Description:}
     \begin{itemize}
-        \item \textbf{Target Variable ($y$):} \texttt{price} in US dollars (ranging from \$326 to \$18,823).
+        \item \textbf{Target Variable ($y$):} \texttt{price} in US dollars.
         \item \textbf{Numerical Features:} 
         \begin{itemize}
-            \item \texttt{carat}: Weight (0.2 - 5.01). The most significant predictor.
+            \item \texttt{carat}: Weight, the most significant predictor.
             \item \texttt{x}, \texttt{y}, \texttt{z}: Length, Width, and Depth in mm.
             \item \texttt{depth}: Total depth percentage ($z / \text{mean}(x, y)$).
             \item \texttt{table}: Width of the top relative to the widest point.
         \end{itemize}
         \item \textbf{Categorical Features (Ordinal):} \texttt{cut}, \texttt{color}, and \texttt{clarity}.
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Dataset Overview: The Diamonds Dataset}
+  Distribution of all the main variables within the diamonds dataset.
+  \vspace{0.3cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth,height=0.75\textheight,keepaspectratio]{../images/feature-distribution.png}
+    \end{figure} 
 \end{frame}
 
 \begin{frame}{Dataset Characteristics: Multicollinearity}
