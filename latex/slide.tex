@@ -331,7 +331,286 @@
         \item[] \textit{\footnotesize If the feature matrix $X$ is not full-rank, for instance, due to perfectly collinear features, the minimum eigenvalue of the OLS component $\frac{1}{n}X^T X$ is exactly $0$, meaning $\mu = \lambda$. This mathematically proves that without regularization ($\lambda=0$), the problem might not be strongly convex, which would make convergence much slower.}
         
         \vspace{0.2cm}
-        \item \textbf{Consequence:} The larger $\mu$ is, the faster the algorithm will converge to the minimum.
+        \item \textbf{Consequence:} The larger $\mu$ is, faster the algorithm will converge to the minimum.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The expected effect of L2 regularization}
+    \small
+    We expect the regularization parameter $\lambda$ alter the geometry of our cost function. 
+
+    \vspace{0.2cm}
+    Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}, which dictates the \textit{minimum curvature} of the loss landscape. Mathematically, by adding the quadratic penalty $\frac{\lambda}{2} \|w\|_2^2$, we are guaranteeing that the function curves upwards by at least a factor of $\lambda$ in every single direction. Visually, this means any "flat valleys" caused by multicollinearity are physically eliminated, making the entire bowl narrower and more symmetrically curved .
+
+    \vspace{0.2cm}
+    \begin{figure}
+        \centering
+        % Sostituisci 'geometry_effect.png' con il nome reale della tua immagine
+        \includegraphics[height=0.5\textheight]{../images/normal-parabola-ridge.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{The expected effect of L2 regularization}
+    
+    \textbf{Expected Results on Convergence:}
+    
+    \vspace{0.3cm}
+    Because the minimum curvature ($\mu$) is strictly bounded away from zero and increases with $\lambda$, the loss function no longer has any flat regions where the algorithm might stall. 
+    
+    \vspace{0.3cm}
+    The gradients will always provide a strong and clear signal pointing toward the minimum. Consequently, we expect that as $\lambda$ increases, the Gradient Descent algorithm will be pushed toward the global minimum much more rapidly, requiring significantly fewer iterations to reach the strict convergence criterion.
+\end{frame}
+
+\begin{frame}{Dataset pre-processing steps}
+    
+    To prepare the dataset for our optimization algorithms, we now apply the following preprocessing steps:
+
+    \begin{enumerate}
+        \item \textbf{Ordinal Encoding:} Categorical variables (\texttt{cut}, \texttt{color}, \texttt{clarity}) were mapped to integer values, preserving their inherent hierarchy. This safely converts text labels into a numerical format that the mathematical model can process.
+        
+        \vspace{0.2cm}
+        \item \textbf{Removing Outliers:} We filter out extreme anomalous data points. Since our objective function relies on Mean Squared Error (MSE), it is highly sensitive to outliers, which could disproportionately skew the optimization of our weights.
+    \end{enumerate}
+
+    \vspace{0.4cm}
+    Before feeding our data into the optimization algorithm, we must carefully preprocess our matrices.
+\end{frame}
+
+\begin{frame}{Dataset pre-processing steps}
+    
+    \begin{enumerate}
+        \item[1.] \textbf{Standardizing the Features ($X$) and the Target ($y$):} By subtracting the mean and dividing by the standard deviation, we ensure all features and the target share the same scale (a mean of 0 and a variance of 1). Mathematically, for each feature column $x_j$ in $X$ and for the target vector $y$, the transformation is defined as: 
+        
+        $$x_j = \frac{x_j - \mu_j}{\sigma_j} \quad \text{} \quad y = \frac{y - \mu_y}{\sigma_y}$$
+        
+        This is crucial because it prevents features with naturally larger ranges from dominating the cost function. Geometrically, it transforms the loss landscape from an elongated ellipse into a much more spherical shape, which allows Gradient Descent to point much more directly toward the minimum and converge significantly faster.
+
+        \vspace{0.4cm}
+        \item[2.] \textbf{The Bias Trick (Adding a column of 1s):} We append a column composed entirely of ones to our feature matrix $X$. This mathematical trick allows us to absorb the intercept (or bias) term directly into our weight vector $w$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Experimental Approach and Goals}
+    We will now test and compare the various optimization algorithms. Each algorithm will be evaluated across a predefined set of regularization hyperparameters: $\lambda \in \{10^{-5}, 10^{-4}, 10^{-3}, 0.01, 0.1, 1.0\}$. 
+
+    \vspace{0.4cm}
+    The objective of this experiment is to conduct comparative analysis with a focus on:
+    
+    \vspace{0.2cm}
+    \begin{itemize}
+        \item \textbf{Impact of $\lambda$ on convergence:} On the same algorithm, how varying the $\lambda$ penalty impacts the number of iterations and time required to reach convergence.
+        
+        \vspace{0.3cm}
+        \item \textbf{Compare different algorithms} How different algorithms(GD, SGD, Newton methods ecc..) performs under the same regularization conditions.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Exact Analytical Solution}
+    
+    We compute the exact global minimum $w^*$ and its corresponding optimal loss $f(w^*)$ across the predefined set of regularization hyperparameters $\lambda \in \{10^{-5}, 10^{-4}, 10^{-3}, 0.01, 0.1, 1.0\}$. By knowing the absolute minimum $w^*$ beforehand, we can use it later as a benchmark to evaluate exactly how well and how fast our iterative algorithms converge to the true solution.
+
+    \vspace{0.4cm}
+    To find this baseline, we directly apply the \textbf{closed-form solution} using \texttt{np.linalg.solve(A, b)} which efficiently and stably solves the underlying linear system of equations 
+    
+    $$\left( \frac{1}{n} X^T X + \lambda I \right) w = \frac{1}{n} X^T y$$
+    
+    providing us with a accurate weight vector so we can compute the optimal values for each $\lambda$.
+\end{frame}
+
+\begin{frame}{Exact Analytical Solution}
+    
+    \begin{table}[]
+        \centering
+        \resizebox{\textwidth}{!}{
+        \begin{tabular}{lcccccc}
+            \toprule
+            \textbf{$\lambda$} & $10^{-5}$ & $10^{-4}$ & $10^{-3}$ & $0.01$ & $0.1$ & $1.0$ \\
+            \midrule
+            \textbf{$f(w^*)$} & 0.04265771 & 0.04276069 & 0.04369175 & 0.04977553 & 0.07101217 & 0.16355421 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+    
+    \vspace{0.2cm}
+    As the regularization hyperparameter $\lambda$ increases, the training error (loss) increases as well. This happens because the optimization algorithm is no longer solely focused on minimizing the residual errors to fit the training data perfectly. 
+    
+    \vspace{0.3cm}
+    Instead, it must balance that goal with keeping the model weights ($w$) as small as possible to minimize the heavy $L_2$ penalty. By forcing the weights to shrink, we restrict the model's flexibility, preventing it from capturing every minor fluctuation and noise in the training set.
+\end{frame}
+
+\begin{frame}{Gradient Descent}
+    Now we implement the core iterative optimization algorithm: \textbf{Gradient Descent}. 
+
+    \vspace{0.3cm}
+    This function updates our weight vector $w$ step-by-step by moving in the opposite direction of the gradient, scaled by the learning rate (step size) $\gamma$:
+    $$w^{(t+1)} = w^{(t)} - \gamma \nabla f(w^{(t)})$$
+
+    \vspace{0.3cm}
+    We have introduce a \textbf{stopping criterion}. Rather than running for \texttt{max\_iters}, the algorithm continuously monitors $\epsilon$ (epsilon): the difference between the current loss and the exact analytical minimum $w^*$ we established in the previous step. 
+    
+    \vspace{0.3cm}
+    If this difference drops below a microscopic tolerance threshold (\texttt{tol = 1e-6}), the algorithm recognizes that it has practically reached the global minimum and triggers an "early stop".
+    $$ \epsilon = f(w_T) - f(w^*)$$
+\end{frame}
+
+\begin{frame}{Gradient Descent - Naive Learning Rate}
+    Now we execute our Gradient Descent algorithm across our predefined set of L2 $\lambda$ values. 
+
+    \vspace{0.2cm}
+    For this first run, we are intentionally using a \textbf{naive, very small learning rate $\gamma$ = 0.0001 }.
+
+    \vspace{0.2cm}
+    Choosing a tiny step size is a conservative and highly stable approach: it guarantees that our algorithm will not overshoot the minimum or diverge. However, this safety comes with a heavy trade-off in efficiency. Taking such microscopic steps means the algorithm might require a massive number of iterations to finally reach the bottom of the convex bowl, which is why we must allow a high computational budget (\texttt{max\_iters = 50000}).
+
+    \vspace{0.2cm}
+    The code loops through each regularization strength, times the execution to measure computational efficiency, and stores all the final metrics—including the optimized weights, final loss, iterations needed to trigger the early stop, and elapsed time.
+    
+\end{frame}
+
+\begin{frame}{Gradient Descent - Naive Learning Rate}
+    \small
+    Final results per $\lambda$ using a naive learning rate ($\gamma = 0.0001$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lcccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{$\gamma$} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.05510 & 0.0001 & 50000 & 9.55 \\
+            $10^{-4}$ & 0.05512 & 0.0001 & 50000 & 10.53 \\
+            $10^{-3}$ & 0.05528 & 0.0001 & 50000 & 9.70 \\
+            $0.01$    & 0.05689 & 0.0001 & 50000 & 10.24 \\
+            $0.1$     & 0.07171 & 0.0001 & 50000 & 11.27 \\
+            $1.0$     & 0.16356 & 0.0001 & 31209 & 6.40 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+    \begin{itemize}
+        \item For low regularizations (from $\lambda=10^{-5}$ to $0.1$), the algorithm hits the \texttt{max\_iters} limit of 50,000 without reaching the tight tolerance of the early stop.
+        \item Only for the strongest regularization ($\lambda = 1.0$), the algorithm is pushed fast enough to converge in exactly 31,209 iterations.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gradient Descent - Assuming Bounded Gradient}
+    \small
+    Assume we are moving in a bounded region $\|w\| \leq R$ containing all iterates, and the distance between the initial solution and optimal solution is bounded by $R$. Since we initialize our initial solution vector to \textbf{Zero} (\texttt{np.zeros}), the distance coincides exactly with the norm of the solution:
+    $$\|w_0 - w^*\| = \|w^*\| \le R$$
+    $$\|0 - w^*\| = \|w^*\| \le R$$
+
+    Basically the assumption on $R$ means: \textit{"The optimal solution and the optimization path to reach it lie within a sphere of radius $R$."}
+
+    \begin{itemize}
+        \item Since we have \textbf{standardized the data} ($X$ and $y$ have zero mean and unit variance), the optimized weights $w$ will naturally be small (typically between -1 and 1)
+        \item We set \textbf{$R = 5.0$}. A generous safety margin (a "Bounded Region") that is virtually guaranteed to contain the true solution.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gradient Descent - Assuming Bounded Gradient}
+    \small
+    We need to find a number $B$ such that $\|\nabla f(w)\| \le B$ for every $w$ within the radius $R$.
+
+    We rewrite the gradient formula in this way:
+    $$\nabla f(w) = \left(\frac{1}{n}X^T X + \lambda I\right)w - \frac{1}{n}X^T y$$
+
+    Using the triangle inequality ($\|a + (-b)\| \le \|a\| + \|-b\|$) and the definition of matrix norms:
+    $$\|\nabla f(w)\| \le \underbrace{\left\| \frac{1}{n}X^T X + \lambda I \right\|}_{\text{This is smooth parameter L}} \cdot \underbrace{\|w\|}_{\le R} + \underbrace{\left\| \frac{1}{n}X^T y \right\|}_{\text{Constant}}$$
+
+    \vspace{0.3cm}
+    So the formula for $B$ is:
+    $$B = L \cdot R + \left\| \frac{1}{n}X^T y \right\|$$
+\end{frame}
+
+\begin{frame}{Gradient Descent - Assuming Bounded Gradient}
+    By making the assumption that our optimization path remains within a bounded region $\|w\| \le R$, and having calculated the maximum gradient bound $B$ such that $\|\nabla f(w)\| \le B$, we have effectively established that our objective function is \textbf{$B$-Lipschitz continuous} within this domain. 
+
+    \vspace{0.4cm}
+    For Lipschitz continuous functions, optimization theory provides a specific, optimal step size: we can now set $\gamma$ using the formula:
+    
+    $$\gamma = \frac{R}{B \sqrt{T}}$$
+\end{frame}
+
+\begin{frame}{Gradient Descent - Assuming Bounded Gradient}
+    \small
+    Final results per $\lambda$ using the bounded gradient step size ($\gamma$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lcccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{$\gamma$} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04966 & 0.00214 & 10000 & 1.86 \\
+            $10^{-4}$ & 0.04969 & 0.00214 & 10000 & 2.04 \\
+            $10^{-3}$ & 0.04997 & 0.00214 & 10000 & 2.88 \\
+            $0.01$    & 0.05263 & 0.00214 & 10000 & 2.15 \\
+            $0.1$     & 0.07103 & 0.00210 & 10000 & 2.02 \\
+            $1.0$     & 0.16356 & 0.00176 & 1768  & 0.32 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+   \begin{itemize}
+        \item \textbf{Larger Steps:} The dynamic $\gamma \approx 0.002$ is safely 20x larger than the naive guess.
+        \item \textbf{Massive Speedup:} For $\lambda = 1.0$, it converges in only 1,768 iterations (vs. 31,209).
+        \item \textbf{Higher Accuracy:} It reaches a strictly lower loss in just 10,000 steps compared to the 50,000 steps of the naive approach.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gradient Descent - Smoothness}
+
+    \vspace{0.2cm}
+    Previously we have seen that function is \textbf{$L$-Smooth}. The curvature does not change abruptly; the gradient does not fluctuate wildly. The function always stays "below" a certain bounding parabola. 
+
+    \vspace{0.3cm}
+    \begin{itemize}
+        \item \textbf{Value of $L$:} It is the largest eigenvalue of the Hessian matrix (the maximum curvature).
+          $$L = \lambda_{\max}\left(\frac{1}{n}X^T X\right) + \lambda$$
+          or equivalently
+          $$L = \left\| \frac{1}{n}X^T X \right\| + \lambda$$
+          
+        \vspace{0.2cm}
+        \item \textbf{Consequence:} This value is the \textbf{speed limit} for Gradient Descent. If we use a learning rate $\gamma > \frac{2}{L}$, the algorithm will diverge. The optimal safe step size is $1/L$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Gradient Descent - Smoothness}
+    \small
+    Final results per $\lambda$ using the optimal step size ($\gamma = 1/L$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lcccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{$\gamma = 1/L$} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04266 & 0.23247 & 8353 & 1.56 \\
+            $10^{-4}$ & 0.04276 & 0.23247 & 7767 & 1.74 \\
+            $10^{-3}$ & 0.04369 & 0.23242 & 4438 & 1.76 \\
+            $0.01$    & 0.04978 & 0.23193 & 765  & 0.22 \\
+            $0.1$     & 0.07101 & 0.22719 & 142  & 0.07 \\
+            $1.0$     & 0.16355 & 0.18862 & 15   & 0.01 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+
+    \vspace{0.4cm}
+    \textbf{Observations:}
+    \begin{itemize}
+        \item \textbf{Optimal Steps:} The safe learning rate ($\gamma \approx 0.23$) is $\sim$2,300x larger than our naive guess.
+        \item \textbf{Lightning Fast:} For $\lambda = 1.0$, it perfectly converges in just 15 iterations (down from 31,209).
+        \item \textbf{Perfect Accuracy:} Final loss values now exactly match our analytical baseline.
     \end{itemize}
 \end{frame}
 
