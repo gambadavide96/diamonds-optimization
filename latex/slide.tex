@@ -798,4 +798,193 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Newton's Method}
+    Until now, we have relied on first-order optimization algorithms (like Gradient Descent and its variants), which only use the gradient (the slope) to determine the direction of our next step. \textbf{Newton's Method} introduces a massive upgrade by incorporating second-order derivative information—specifically, the curvature of the loss landscape represented by the Hessian matrix $\nabla^2 f(\mathbf{x})$. 
+
+    \vspace{0.3cm}
+    By understanding both the slope and the curvature, the algorithm doesn't just step blindly down the hill; it models the exact shape of the convex bowl and points directly toward the bottom.
+
+    \vspace{0.4cm}
+    Mathematically, for minimizing a convex function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ in the $d$-dimensional case, the update rule is defined as:
+
+    $$\mathbf{w}_{t+1} := \mathbf{w}_t - \nabla^2 f(\mathbf{w}_t)^{-1}\nabla f(\mathbf{w}_t)$$
+\end{frame}
+
+\begin{frame}{Newton's Method}
+    \small
+    Final results per $\lambda$ using Newton's Method:
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04266 & 1 & 0.006 \\
+            $10^{-4}$ & 0.04276 & 1 & 0.004 \\
+            $10^{-3}$ & 0.04369 & 1 & 0.003 \\
+            $0.01$    & 0.04978 & 1 & 0.003 \\
+            $0.1$     & 0.07101 & 1 & 0.003 \\
+            $1.0$     & 0.16355 & 1 & 0.002 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Newton's Method}
+    \small
+    Looking at the experimental results, \textbf{Newton's Method achieves exact numerical convergence (to our $10^{-6}$ tolerance) in a single update iteration.}
+
+    \vspace{0.3cm}
+    This result is a direct consequence of the underlying mathematical nature of \textbf{Ridge Regression}. The objective function is an \textbf{entirely quadratic} and strictly convex function with respect to the weight vector $w$. 
+
+    $$f(w) = \frac{1}{2n} \| Xw - y \|^2 + \frac{\lambda}{2} \| w \|^2$$
+
+    \vspace{0.3cm}
+    \textbf{The One-Step Convergence Lemma:}\\
+    \textit{On nondegenerate quadratic functions, with any arbitrary starting point $w_0 \in \mathbb{R}^d$, Newton's method yields the exact global minimum $w^*$ in exactly one step ($w_1 = w^*$).}
+
+    \vspace{0.3cm}
+    Because the Ridge Regression objective function satisfies the conditions of a nondegenerate quadratic function (because a matrix with strictly positive eigenvalues is guaranteed to be strictly positive definite and invertible), this experimental behavior aligns exactly with optimization theory.
+\end{frame}
+
+\begin{frame}{Adagrad}
+    AdaGrad modifies standard Stochastic Gradient Descent by introducing a dynamic, per-coordinate learning rate. At each iteration $t$, we first pick a stochastic gradient $\mathbf{g}_t$.
+
+    \vspace{0.3cm}
+    \textbf{1. Gradient Accumulation}\\
+    We accumulate the history of squared gradients for each individual coordinate $i$:
+    $$[G_t]_i := \sum_{s=0}^{t} ([\mathbf{g}_s]_i)^2 \quad \forall i$$
+    \textit{(This step tracks how strong the gradients have been in the past specifically for the $i$-th coordinate).}
+
+    \vspace{0.3cm}
+    \textbf{2. Parameter Update}\\
+    We then update each coordinate $i$ of our parameter vector $\mathbf{w}$:
+    $$[\mathbf{w}_{t+1}]_i := [\mathbf{w}_t]_i - \frac{\gamma}{\sqrt{[G_t]_i}} [\mathbf{g}_t]_i \quad \forall i$$
+\end{frame}
+
+\begin{frame}{Adagrad}
+    \textbf{The Adaptive Learning Rate:}\\
+    The crucial part of this formula is the term $\frac{\gamma}{\sqrt{[G_t]_i}}$, which acts as our new coordinate-specific learning rate. 
+    
+    \vspace{0.3cm}
+    \begin{itemize}
+        \item By dividing the base learning rate $\gamma$ by the square root of the accumulated gradients, the algorithm automatically \textbf{reduces the step size} for coordinates that have historically had large gradients.
+        
+        \vspace{0.3cm}
+        \item Instead, if a coordinate has had consistently small gradients, its learning rate remains relatively \textbf{higher}. 
+    \end{itemize}
+
+    \vspace{0.4cm}
+    This mechanism speeds up convergence and drastically reduces wild oscillations along directions where gradients are already large.
+\end{frame}
+
+\begin{frame}{Adagrad}
+    \small
+    Final results per $\lambda$ using the Adagrad algorithm with $\gamma$ = 0.1:
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.6\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{$\lambda$} & \textbf{Loss} & \textbf{Iters} & \textbf{Time[s]} \\
+            \midrule
+            $10^{-5}$ & 0.04266 & 42511 & 11.99 \\
+            $10^{-4}$ & 0.04276 & 37110 & 9.61 \\
+            $10^{-3}$ & 0.04369 & 19376 & 4.73 \\
+            $0.01$    & 0.04978 & 3477  & 0.78 \\
+            $0.1$     & 0.07101 & 9059  & 1.98 \\
+            $1.0$     & 0.16356 & 8292  & 1.92 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Adagrad}
+    \vspace{0.2cm}
+    \begin{itemize}
+        \item \textbf{Guaranteed Convergence:} Adagrad successfully reached the exact global minimum for all $\lambda$ values. It automatically scaled its own steps, completely avoiding the need to compute theoretical parameters like Lipschitz smoothness ($L$) or strong convexity ($\mu$).
+        
+        \vspace{0.4cm}
+        \item \textbf{Slower than Adjusted SGD:} The algorithm is significantly slower than our tuned SGD (taking $\sim$42k iterations for $\lambda=10^{-5}$).
+        
+        \vspace{0.4cm}
+        \item \textbf{High Curvature Penalty:} Stronger regularization (e.g., $\lambda=1.0$) creates a steeper convex bowl. This produces massive gradients in the very first iterations, which permanently push up the denominator $G_t$. The algorithm push down $\gamma$ too early, requiring thousands of tiny, redundant steps to cross the final tolerance threshold.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Summary of Results for $\lambda = 10^{-5}$}
+    \small
+    Performance comparison on the ill-conditioned problem ($\lambda = 10^{-5}$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{Optimization Method} & \textbf{Loss} & \textbf{Iterations} & \textbf{Time[s]} \\
+            \midrule
+            Naive Gradient Descent & 0.05510 & 50000* & $\sim$10.50 \\
+            Bounded Gradient Descent & 0.04966 & 10000* & 1.86 \\
+            Smooth Gradient Descent & \textbf{0.04266} & 8353 & 1.56 \\
+            Accelerated Gradient Descent & \textbf{0.04266} & 203 & 0.10 \\
+            Naive SGD & 0.05510 & 50000* & 12.79 \\
+            Decaying Learning Rate SGD & \textbf{0.04266} & 14199 & 3.58 \\
+            Newton's Method & \textbf{0.04266} & \textbf{1} & \textbf{0.006} \\
+            Adagrad & \textbf{0.04266} & 42511 & 11.99 \\
+            \bottomrule
+            \multicolumn{4}{l}{\scriptsize \textit{*Hit maximum iterations limit without fully converging}}
+        \end{tabular}}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Summary of Results for $\lambda = 1.0$}
+    \small
+    Performance comparison on the strongly regularized problem ($\lambda = 1.0$):
+
+    \vspace{0.4cm}
+    \begin{table}[]
+        \centering
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{Optimization Method} & \textbf{Loss} & \textbf{Iterations} & \textbf{Time[s]} \\
+            \midrule
+            Naive Gradient Descent & 0.16356 & 31209 & 6.39 \\
+            Bounded Gradient Descent & 0.16356 & 1768 & 0.32 \\
+            Smooth Gradient Descent & 0.16355 & 15 & 0.01 \\
+            Accelerated Gradient Descent & 0.16355 & 12 & 0.005 \\
+            Naive SGD & 0.16356 & 31254 & 7.35 \\
+            Decaying Learning Rate SGD & 0.16355 & 101 & 0.04 \\
+            Newton's Method & 0.16355 & 1 & 0.002 \\
+            Adagrad & 0.16356 & 8292 & 1.92 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Conclusions}
+    \vspace{0.2cm}
+    \begin{itemize}
+        \item \textbf{Impact of $\lambda$ on Convergence:}\\
+        Increasing $\lambda$ helps optimization's algorithms to converge, making the objective function more strongly convex. A higher $\lambda$ drastically reduces iterations and execution time.
+
+        \vspace{0.4cm}
+        \item \textbf{Algorithm Performance Comparison:}\\
+        \vspace{0.1cm}
+        \begin{itemize}
+            \item \textbf{Newton's Method:} Converges in exactly 1 step across all $\lambda$ by leveraging second-order curvature.
+            \item \textbf{Accelerated GD:} Best first-order method for difficult, low-$\lambda$ problems. Momentum effortlessly navigates flat valleys.
+            \item \textbf{Standard GD ($1/L$):} Highly efficient for well-conditioned (high-$\lambda$) problems, but struggles heavily in flat scenarios.
+            \item \textbf{Mini-batch SGD:} Safely converges via custom decaying rate, but stochastic noise makes strict high-precision slower than full-batch.
+            \item \textbf{Adagrad:} Auto-tunes step sizes without theoretical parameters, but the monotonically shrinking learning rate causes a slow late-stage crawl.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \end{document}

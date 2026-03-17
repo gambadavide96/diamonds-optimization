@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1773686715.37899 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1773686719.05768 0
+["pdflatex"] 1773738977.7167 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1773738981.85611 0
   "../images/feature-distribution.png" 1773670223.98587 179384 95f498474e0882a12ac7f02f48d3a3be ""
   "../images/normal-parabola-ridge.png" 1772731355.4534 102822 824b2daf262d685faad56a6a302bb660 ""
-  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1773686715.09906 42257 1edb51f17f33a83a21cdb395049a0032 ""
+  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1773738977.40235 51780 b8873cf8bdab9e46e8cf52141787015f ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1741388039 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1741388039 5466553 2748998d7db8078826afa1f272036265 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1741388039 1004 54797486969f23fa377b128694d548df ""
@@ -39,7 +39,9 @@
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi9.tfm" 1741388039 1700 6cce8f71de5b3d676f417bc2a77d1db2 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1741388039 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1741388039 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1741388039 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1741388039 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
+  "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1741388039 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1741388039 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1741388039 36094 798f80770b3b148ceedd006d487db67c ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1741388039 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
@@ -226,10 +228,10 @@
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1741388039 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346062 5b41f5f1f86715961a7a7134091efb1b ""
-  "slide.aux" 1773686718.86063 6237 e5ccccfbd3a332d84e2617ef37829b6f "pdflatex"
-  "slide.nav" 1773686718.86283 4364 5e9d421d9d1f147fbae03e08cfd47bc3 "pdflatex"
-  "slide.out" 1773686716.32663 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "slide.tex" 1773686715.09906 42257 1edb51f17f33a83a21cdb395049a0032 ""
+  "slide.aux" 1773738981.63933 7527 64a0e7c09a9cc9fa202fa7f5a7c775ee "pdflatex"
+  "slide.nav" 1773738981.64184 5294 35fbb9a2310ab0842a0b30d917d5f59e "pdflatex"
+  "slide.out" 1773738978.59838 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "slide.tex" 1773738977.40235 51780 b8873cf8bdab9e46e8cf52141787015f ""
   (generated)
   "slide.aux"
   "slide.log"
