@@ -336,6 +336,10 @@ INPUT ./slide.nav
 INPUT slide.nav
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
+INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssi8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map
@@ -359,9 +363,7 @@ INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/sansmathac
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
-INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
-INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmtt9.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
@@ -390,8 +392,6 @@ INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/san
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssi9.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
-INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmssi8.tfm
-INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
