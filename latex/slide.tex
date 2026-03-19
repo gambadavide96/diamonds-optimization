@@ -29,14 +29,14 @@
 \end{frame}
 
 \begin{frame}{Introduction}
-    The primary objective of this study is to conduct a comparative analysis of the convergence behavior of various optimization algorithms applied on a Ridge Regression problem to the Diamonds Dataset.
+    The objective of this study is to conduct a comparative analysis of the convergence behavior of various optimization algorithms applied on a Ridge Regression problem to the Diamonds Dataset.
     
     \vspace{0.3cm}
     In particular, the focus is on:
     \begin{itemize}
         \item Evaluating the respective algorithms convergence rates.
-        \item Investigating how theoretical properties of the objective function (such as Smoothness and Strongly Convexity) have an impact to results.
-        \item Evaluating how the $L_2$ regularization parameter ($\lambda$) of Ridge Regression influences speed and efficiency of the algorithms.
+        \item Investigating how theoretical properties of the objective function (such as Convexity, Smoothness ecc..) have an impact to results.
+        \item Evaluating how the $L_2$ regularization parameter ($\lambda$) of Ridge Regression influences algorithms behavior.
     \end{itemize}
     
     \vspace{0.3cm}
@@ -52,9 +52,9 @@
 \end{frame}
 
 \begin{frame}{Dataset Overview: The Diamonds Dataset}
-    To evaluate the performance of the optimization algorithms, we utilized the \textbf{Diamonds Dataset}. The dataset consists of approximately \textbf{54,000 observations} ($n=53,940$), each representing a diamond with \textbf{10 distinct attributes}.
+    To evaluate the performance of the optimization algorithms, we utilized the \textbf{Diamonds Dataset}. The dataset consists of approximately \textbf{54,000 observations} ($n=53.940$), each representing a diamond with \textbf{10 distinct attributes}.
     
-    The primary objective is to predict with a Ridge Regression the \textbf{Price} of a diamond based on its physical and quality characteristics.
+    The goal is to predict with a Ridge Regression the \textbf{Price} of a diamond based on its physical and quality characteristics.
     
     \vspace{0.3cm}
     \textbf{Feature Description:}
@@ -82,22 +82,22 @@
 
 \begin{frame}{Dataset Characteristics: Multicollinearity}
     \textbf{What is Multicollinearity?} \\
-    It occurs when two or more independent variables in a regression model are highly linearly correlated, meaning one feature can be accurately predicted from the others.
+    It occurs when two or more independent variables in a regression model are highly linearly correlated, meaning one feature can be predicted from the others.
     
     \vspace{0.3cm}
-    \textbf{The Diamonds Case:} \\
+    \textbf{The Diamonds Dataset Case:} \\
     In our specific dataset, there is a strong correlation between \texttt{carat} (weight) and the physical dimensions (\texttt{x}, \texttt{y}, \texttt{z}). These features provide almost identical information.
     
     \vspace{0.3cm}
     \textbf{Impact on Optimization:}
     \begin{itemize}
         \item This structural redundancy results in a feature matrix $X$ with a very small minimum eigenvalue ($\lambda_{\min} \approx 0$).
-        \item Consequently, the underlying optimization problem becomes highly \textbf{ill-conditioned}. It is particularly challenging for standard gradient-based methods because it creates flat, unstable valleys in the loss landscape.
+        \item Consequently, the underlying optimization problem becomes highly \textbf{ill-conditioned}. It is particularly challenging for gradient-based methods because it creates flat valleys in the loss function landscape.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Ridge Regression}
-    In this study, we address the \textbf{Ridge Regression} problem, which extends Ordinary Least Squares (OLS) by imposing an $L_2$ penalty on the model parameters to mitigate overfitting and multicollinearity.
+    We address the \textbf{Ridge Regression} problem, which extends Ordinary Least Squares (OLS) by imposing an $L_2$ penalty on the model parameters to mitigate overfitting and multicollinearity.
 
     \vspace{0.1cm}
 
@@ -113,9 +113,9 @@
 
     Where:
     \begin{itemize}
-        \item $X \in \mathbb{R}^{n \times d}$ is the feature matrix (standardized, includes a column of 1).
-        \item $y \in \mathbb{R}^n$ is the target vector (price).
-        \item $w \in \mathbb{R}^d$ is the vector of weights to be optimized.
+        \item $X \in \mathbb{R}^{n \times d}$ is the feature matrix (includes a column of 1).
+        \item $y \in \mathbb{R}^n$ is the target variable (price).
+        \item $w \in \mathbb{R}^d$ is the weights vector.
         \item $\lambda > 0$ is the regularization hyperparameter.
     \end{itemize}
 \end{frame}
@@ -123,19 +123,19 @@
 \begin{frame}{Ridge Regression: Why the scaling?}
     \textbf{Why the scaling?}
     
-    Introducing specific scaling factors is convenient for mathematical and numerical stability:
+    Introducing scaling factors is convenient for mathematical and numerical stability:
     
     \vspace{0.3cm}
     \begin{itemize}
         \item \textbf{The factor $\frac{1}{2}$}: Cancels out the exponent $2$ when computing the gradient $\nabla f(w)$ and the derivative of $\|w\|^2$, simplifying to a linear form without constant multipliers.
         
         \vspace{0.3cm}
-        \item \textbf{The factor $\frac{1}{n}$}: Normalizes the error term with respect to the dataset size. This ensures that the magnitude of the loss (and consequently the gradient) is independent of the number of samples $n$. This allows the same learning rates to be effective regardless of whether we use the full dataset or a smaller subset.
+        \item \textbf{The factor $\frac{1}{n}$}: Normalizes the error term with respect to the dataset size. This ensures that the magnitude of the loss is independent by the number of samples $n$. This allows the same learning rates to be effective regardless we use the full dataset or a smaller subset.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Gradient and Hessian Matrix}
-    Since $f(w)$ is differentiable, we can work with first-order derivative (the Gradient) and second-order derivative (the Hessian matrix) to minimize the objective function.
+    Since $f(w)$ is differentiable, we can compute the first-order derivative (the Gradient) and second-order derivative (the Hessian matrix) to minimize the objective function.
 
     \vspace{0.3cm}
     \textbf{The Gradient $\nabla f(w)$}
@@ -176,7 +176,7 @@
 
 \begin{frame}{The Gradient $\nabla f(w)$}
     \small
-    The gradient is the vector of partial derivatives with respect to $w$. 
+    The gradient is the $d \times 1$ vector of partial derivatives respect to $w$. 
     To compute the gradients and Hessians, we rely on the following standard matrix calculus properties (assuming $w$ and $b$ are column vectors, and $A$ is a symmetric matrix):
 
     \begin{enumerate}
@@ -215,10 +215,9 @@
     \nabla f(w) = \frac{1}{n} (X^T X w - X^T y) + \lambda w
     $$
     
-    Factoring out common terms, this is also frequently written as:
+    Factoring out common terms:
     $$\nabla f(w) = \frac{1}{n} X^T (Xw - y) + \lambda w$$
 
-    Gradient is a $d \times 1$ vector.
 \end{frame}
 
 \begin{frame}{The Hessian Matrix $\nabla^2 f(w)$}
