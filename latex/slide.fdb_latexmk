@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1773941993.49844 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1773941997.62452 0
+["pdflatex"] 1774032479.27801 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1774032483.53498 0
   "../images/feature-distribution.png" 1773670223.98587 179384 95f498474e0882a12ac7f02f48d3a3be ""
   "../images/logo-unibg.jpg" 1773765537.88729 46556 f36a21f5339d542dbd4190b6814e3699 ""
   "../images/normal-parabola-ridge.png" 1772731355.4534 102822 824b2daf262d685faad56a6a302bb660 ""
-  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1773941993.20196 51956 5155fc4c283fb366b103c5c20b63ffb2 ""
+  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1774032478.98752 51756 2fafba8df1f5e94892766b92b0f44181 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1741388039 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1741388039 5466553 2748998d7db8078826afa1f272036265 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1741388039 1004 54797486969f23fa377b128694d548df ""
@@ -229,10 +229,10 @@
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1741388039 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346062 5b41f5f1f86715961a7a7134091efb1b ""
-  "slide.aux" 1773941997.39044 7527 64a0e7c09a9cc9fa202fa7f5a7c775ee "pdflatex"
-  "slide.nav" 1773941997.39322 5294 35fbb9a2310ab0842a0b30d917d5f59e "pdflatex"
-  "slide.out" 1773941994.39473 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "slide.tex" 1773941993.20196 51956 5155fc4c283fb366b103c5c20b63ffb2 ""
+  "slide.aux" 1774032483.31556 7527 64a0e7c09a9cc9fa202fa7f5a7c775ee "pdflatex"
+  "slide.nav" 1774032483.31806 5294 35fbb9a2310ab0842a0b30d917d5f59e "pdflatex"
+  "slide.out" 1774032480.18916 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "slide.tex" 1774032478.98752 51756 2fafba8df1f5e94892766b92b0f44181 ""
   (generated)
   "slide.aux"
   "slide.log"

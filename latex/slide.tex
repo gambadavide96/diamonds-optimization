@@ -247,7 +247,7 @@
     \end{itemize}
 
     \vspace{0.3cm}
-    We put the together, so the \textbf{Hessian Matrix} is :
+    We put them together, so the \textbf{Hessian Matrix} is :
     $$
     H = \nabla^2 f(w) = \frac{1}{n} X^T X + \lambda I
     $$
@@ -290,7 +290,7 @@
 
     $$v^T H v > 0 \quad \text{for all } v \neq 0$$
 
-    By the mathematical definition, this proves that the Ridge Hessian matrix $H$ is \textbf{Positive Definite}. The $L_2$ penalty mathematically eliminates any flat regions, guaranteeing that the objective function possesses a single, unique global minimum, so that means $f(w)$ is strictly convex.
+    This proves that the Ridge Hessian matrix $H$ is \textbf{Positive Definite}. The $L_2$ penalty mathematically eliminates any flat regions, guaranteeing that the objective function possesses a single, unique global minimum, so that means $f(w)$ is strictly convex.
 \end{frame}
 
 \begin{frame}{Ridge Regression - Properties}
@@ -312,12 +312,12 @@
     It is \textbf{$L$-Smooth}.
     The curvature does not change abruptly; the gradient doesn't oscillate wildly. The function always lies \textit{below} a certain parabola: 
 
-    $$f(y) \le f(x) + \nabla f(w)^T (y - x) + \frac{L}{2} \|x - y\|^2$$
+    $$f(y) \le f(x) + \nabla f(w)^T (y - x) + \frac{L}{2} \|x - y\|^2 \quad \forall x,y$$
 
     \begin{itemize}
         \item \textbf{Value of $L$:} It corresponds to the largest eigenvalue of the Hessian matrix (the maximum curvature of the loss landscape).
           $$L = \lambda_{\max}\left(\frac{1}{n}X^T X\right) + \lambda$$
-        \item \textbf{Consequence:} This value acts as the absolute \textbf{speed limit} for Gradient Descent. The optimal safe step size is typically $\gamma = \frac{1}{L}$.
+        \item \textbf{Consequence:} This value acts as the absolute \textbf{speed limit} for Gradient Descent. The optimal safe step size is $\gamma = \frac{1}{L}$.
     \end{itemize}
 \end{frame}
 
@@ -328,7 +328,7 @@
     The curvature is "at least" $\mu$ in every direction. The function always lies \textit{above} the quadratic function:
 
     \vspace{-0.2cm}
-    $$f(y) \ge f(x) + \nabla f(x)^T (y - w) + \frac{\mu}{2} \|x - y\|^2$$
+    $$f(y) \ge f(x) + \nabla f(x)^T (y - w) + \frac{\mu}{2} \|x - y\|^2 \quad \forall x,y$$
     \vspace{-0.2cm}
 
     \begin{itemize}
@@ -347,7 +347,7 @@
     We expect the regularization parameter $\lambda$ alter the geometry of our cost function. 
 
     \vspace{0.2cm}
-    Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}, which dictates the \textit{minimum curvature} of the loss landscape. Mathematically, by adding the quadratic penalty $\frac{\lambda}{2} \|w\|_2^2$, we are guaranteeing that the function curves upwards by at least a factor of $\lambda$ in every single direction. Visually, this means any "flat valleys" caused by multicollinearity are physically eliminated, making the entire bowl narrower and more symmetrically curved .
+    Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}, which dictates the \textit{minimum curvature} of the loss landscape. By adding the quadratic penalty $\frac{\lambda}{2} \|w\|_2^2$, we are guaranteeing that the function curves upwards by at least a factor of $\lambda$ in every single direction. This means that any "flat valleys" caused by multicollinearity are physically eliminated, making the objective function narrower.
 
     \vspace{0.2cm}
     \begin{figure}
@@ -365,7 +365,7 @@
     Because the minimum curvature ($\mu$) is strictly bounded away from zero and increases with $\lambda$, the loss function no longer has any flat regions where the algorithm might stall. 
     
     \vspace{0.3cm}
-    The gradients will always provide a strong and clear signal pointing toward the minimum. Consequently, we expect that as $\lambda$ increases, the Gradient Descent algorithm will be pushed toward the global minimum much more rapidly, requiring significantly fewer iterations to reach the strict convergence criterion.
+    The gradients will always provide a strong and clear signal pointing toward the minimum. Consequently, we expect that as $\lambda$ increases, the Gradient Descent algorithm will be pushed toward the global minimum much more rapidly, requiring significantly fewer iterations to reach the optimal solution.
 \end{frame}
 
 \begin{frame}{Dataset pre-processing steps}
@@ -390,10 +390,10 @@
         
         $$x_j = \frac{x_j - \mu_j}{\sigma_j} \quad \text{} \quad y = \frac{y - \mu_y}{\sigma_y}$$
         
-        This is crucial because it prevents features with naturally larger ranges from dominating the cost function. Geometrically, it transforms the loss landscape from an elongated ellipse into a much more spherical shape, which allows Gradient Descent to point much more directly toward the minimum and converge significantly faster.
+        This is crucial because it prevents features with naturally larger ranges from dominating the cost function. Geometrically, it transforms the loss landscape into a much more spherical shape, which allows Gradient Descent to point much more directly toward the minimum and converge significantly faster.
 
         \vspace{0.4cm}
-        \item[2.] \textbf{The Bias Trick (Adding a column of 1s):} We append a column composed entirely of ones to our feature matrix $X$. This mathematical trick allows us to absorb the intercept (or bias) term directly into our weight vector $w$.
+        \item[2.] \textbf{The Bias Trick (Adding a column of 1s):} We append a column of ones to our feature matrix $X$. This mathematical trick allows us to absorb the intercept (or bias) term directly into our weight vector $w$.
     \end{enumerate}
 \end{frame}
 
@@ -408,13 +408,13 @@
         \item \textbf{Impact of $\lambda$ on convergence:} On the same algorithm, how varying the $\lambda$ penalty impacts the number of iterations and time required to reach convergence.
         
         \vspace{0.3cm}
-        \item \textbf{Compare different algorithms} How different algorithms(GD, SGD, Newton methods ecc..) performs under the same regularization conditions.
+        \item \textbf{Compare different algorithms} How different algorithms (GD, SGD, Newton method ecc..) performs under the same regularization conditions.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Exact Analytical Solution}
     
-    We compute the exact global minimum $w^*$ and its corresponding optimal loss $f(w^*)$ across the predefined set of regularization hyperparameters $\lambda \in \{10^{-5}, 10^{-4}, 10^{-3}, 0.01, 0.1, 1.0\}$. By knowing the absolute minimum $w^*$ beforehand, we can use it later as a benchmark to evaluate exactly how well and how fast our iterative algorithms converge to the true solution.
+    We compute the exact global minimum $w^*$ and its corresponding optimal loss $f(w^*)$ across the predefined set of regularization hyperparameters $\lambda \in \{10^{-5}, 10^{-4}, 10^{-3}, 0.01, 0.1, 1.0\}$. By knowing the absolute minimum $w^*$ beforehand, we can use it later as a benchmark to understand when our iterative algorithms converge to the true solution.
 
     \vspace{0.4cm}
     To find this baseline, we directly apply the \textbf{closed-form solution} using \texttt{np.linalg.solve(A, b)} which efficiently and stably solves the underlying linear system of equations 
@@ -449,11 +449,11 @@
     Now we implement the core iterative optimization algorithm: \textbf{Gradient Descent}. 
 
     \vspace{0.3cm}
-    This function updates our weight vector $w$ step-by-step by moving in the opposite direction of the gradient, scaled by the learning rate (step size) $\gamma$:
+    Gradient descent by definition updates the weight vector $w$ step-by-step by moving in the opposite direction of the gradient, scaled by the learning rate (step size) $\gamma$:
     $$w^{(t+1)} = w^{(t)} - \gamma \nabla f(w^{(t)})$$
 
     \vspace{0.3cm}
-    We have introduce a \textbf{stopping criterion}. Rather than running for \texttt{max\_iters}, the algorithm continuously monitors $\epsilon$ (epsilon): the difference between the current loss and the exact analytical minimum $w^*$ we established in the previous step. 
+    We have introduced a \textbf{stopping criterion}. Rather than running for \texttt{max\_iters}, the algorithm continuously monitors $\epsilon$ (epsilon): the difference between the current loss and the exact analytical minimum $w^*$ we established in the previous step. 
     
     \vspace{0.3cm}
     If this difference drops below a microscopic tolerance threshold (\texttt{tol = 1e-6}), the algorithm recognizes that it has practically reached the global minimum and triggers an "early stop".
@@ -461,16 +461,17 @@
 \end{frame}
 
 \begin{frame}{Gradient Descent - Naive Learning Rate}
-    Now we execute our Gradient Descent algorithm across our predefined set of L2 $\lambda$ values. 
+    We execute our Gradient Descent algorithm across our predefined set of $\lambda$ values. 
 
     \vspace{0.2cm}
-    For this first run, we are intentionally using a \textbf{naive, very small learning rate $\gamma$ = 0.0001 }.
+    For this first run, we are using a \textbf{naive, very small learning rate $\gamma$ = 0.0001 }.
 
     \vspace{0.2cm}
-    Choosing a tiny step size is a conservative and highly stable approach: it guarantees that our algorithm will not overshoot the minimum or diverge. However, this safety comes with a heavy trade-off in efficiency. Taking such microscopic steps means the algorithm might require a massive number of iterations to finally reach the bottom of the convex bowl, which is why we must allow a high computational budget (\texttt{max\_iters = 50000}).
+    Choosing a tiny step size is a conservative and highly stable approach: it guarantees that our algorithm will not overshoot the minimum or diverge.\\[0.2cm]
+    However, this safety comes with a heavy trade-off in efficiency. Taking such microscopic steps means the algorithm might require a massive number of iterations to finally reach the optimal solution, which is why we set a high computational budget (\texttt{max\_iters = 50000}).
 
     \vspace{0.2cm}
-    The code loops through each regularization strength, times the execution to measure computational efficiency, and stores all the final metrics—including the optimized weights, final loss, iterations needed to trigger the early stop, and elapsed time.
+    We apply Naive Gradient Descent five times, one for each Ridge Regression regularization $\lambda$ problem defined previously, and store the metrics: final loss, iterations, and execution time.
     
 \end{frame}
 
@@ -499,8 +500,8 @@
     \vspace{0.4cm}
     \textbf{Observations:}
     \begin{itemize}
-        \item For low regularizations (from $\lambda=10^{-5}$ to $0.1$), the algorithm hits the \texttt{max\_iters} limit of 50,000 without reaching the tight tolerance of the early stop.
-        \item Only for the strongest regularization ($\lambda = 1.0$), the algorithm is pushed fast enough to converge in exactly 31,209 iterations.
+        \item For low regularizations (from $\lambda=10^{-5}$ to $0.1$), the algorithm hits the \texttt{max\_iters} limit of 50,000 without reaching the tolerance of the early stop.
+        \item Only for the strongest regularization ($\lambda = 1.0$), the algorithm is pushed fast enough to converge in exactly 31.209 iterations.
     \end{itemize}
 \end{frame}
 
