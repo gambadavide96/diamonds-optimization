@@ -500,15 +500,15 @@
     \vspace{0.4cm}
     \textbf{Observations:}
     \begin{itemize}
-        \item For low regularizations (from $\lambda=10^{-5}$ to $0.1$), the algorithm hits the \texttt{max\_iters} limit of 50,000 without reaching the tolerance of the early stop.
+        \item For low regularizations (from $\lambda=10^{-5}$ to $0.1$), the algorithm hits the \texttt{max\_iters} limit of 50.000 without reaching the tolerance of the early stop.
         \item Only for the strongest regularization ($\lambda = 1.0$), the algorithm is pushed fast enough to converge in exactly 31.209 iterations.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Gradient Descent - Assuming Bounded Gradient}
     \small
-    Assume we are moving in a bounded region $\|w\| \leq R$ containing all iterates, and the distance between the initial solution and optimal solution is bounded by $R$. Since we initialize our initial solution vector to \textbf{Zero} (\texttt{np.zeros}), the distance coincides exactly with the norm of the solution:
-    $$\|w_0 - w^*\| = \|w^*\| \le R$$
+    Assume the distance between initial solution and optimal solution is bounded by $R$ and this bounded region contains all iterates. Since we initialize our initial solution vector to \textbf{Zero} (\texttt{np.zeros}), the distance coincides exactly with the norm of the solution:
+    $$\|w_0 - w^*\| \le R$$
     $$\|0 - w^*\| = \|w^*\| \le R$$
 
     Basically the assumption on $R$ means: \textit{"The optimal solution and the optimization path to reach it lie within a sphere of radius $R$."}
@@ -535,12 +535,14 @@
 \end{frame}
 
 \begin{frame}{Gradient Descent - Assuming Bounded Gradient}
-    By making the assumption that our optimization path remains within a bounded region $\|w\| \le R$, and having calculated the maximum gradient bound $B$ such that $\|\nabla f(w)\| \le B$, we have effectively established that our objective function is \textbf{$B$-Lipschitz continuous} within this domain. 
+    By making the assumption that our optimization path remains within a bounded region $\|w_0 - w^*\| \le R$, and having calculated the maximum gradient bound $B$ such that $\|\nabla f(w)\| \le B$ for all $w$, we have effectively established that our objective function is \textbf{$B$-Lipschitz continuous} within this domain. 
 
     \vspace{0.4cm}
     For Lipschitz continuous functions, optimization theory provides a specific, optimal step size: we can now set $\gamma$ using the formula:
     
     $$\gamma = \frac{R}{B \sqrt{T}}$$
+
+    where $T$ = 10.000 iterations.
 \end{frame}
 
 \begin{frame}{Gradient Descent - Assuming Bounded Gradient}
@@ -574,7 +576,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Gradient Descent - Smoothness property}
+\begin{frame}{Gradient Descent - Smoothness}
 
     \vspace{0.2cm}
     Previously we have seen that function is \textbf{$L$-Smooth}. The curvature does not change abruptly; the gradient does not fluctuate wildly. The function always stays "below" a certain bounding parabola. 
@@ -591,7 +593,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Gradient Descent - Smoothness property}
+\begin{frame}{Gradient Descent - Smoothness}
     \small
     Final results per $\lambda$ using the optimal step size ($\gamma = 1/L$):
 
@@ -617,9 +619,18 @@
     \textbf{Observations:}
     \begin{itemize}
         \item \textbf{Optimal Steps:} The safe learning rate ($\gamma \approx 0.23$) is $\sim$2,300x larger than our naive guess.
-        \item \textbf{Lightning Fast:} For $\lambda = 1.0$, it perfectly converges in just 15 iterations (down from 31,209).
-        \item \textbf{Perfect Accuracy:} Final loss values now exactly match our analytical baseline.
+        \item \textbf{Lightning Fast:} For $\lambda = 1.0$, it perfectly converges in just 15 iterations (down from 31.209).
+        \item \textbf{Perfect convergence:} For all case the algorithm converge to optimal solution.
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Convergence Analysis: Comparing Gradient Descent implementations}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/plot-convergence-GD.png}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}{Nesterov's Accelerated Gradient Descent}
