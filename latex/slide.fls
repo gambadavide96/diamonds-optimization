@@ -388,6 +388,11 @@ INPUT ../images/feature-distribution.png
 INPUT ../images/feature-distribution.png
 INPUT ../images/feature-distribution.png
 INPUT ../images/feature-distribution.png
+INPUT ../images/correlations_matrix.png
+INPUT ../images/correlations_matrix.png
+INPUT ../images/correlations_matrix.png
+INPUT ../images/correlations_matrix.png
+INPUT ../images/correlations_matrix.png
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
