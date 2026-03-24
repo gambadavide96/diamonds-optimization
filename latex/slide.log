@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  24 MAR 2026 18:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  24 MAR 2026 21:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -809,20 +809,20 @@ Package pdftex.def Info: ../images/correlations_matrix.png  used on input line 8
 [19
 
 ]
-
-[20
-
-]
-<../images/normal-parabola-ridge.png, id=612, 1204.5pt x 803.0pt>
+<../images/normal-parabola-ridge.png, id=584, 1204.5pt x 803.0pt>
 File: ../images/normal-parabola-ridge.png Graphic file (type png)
 <use ../images/normal-parabola-ridge.png>
-Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line 362.
+Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line 348.
 (pdftex.def)             Requested size: 196.43652pt x 130.96222pt.
 
 
-[21
+[20
 
  <../images/normal-parabola-ridge.png>]
+
+[21
+
+]
 
 [22
 
@@ -879,36 +879,36 @@ Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line
 [35
 
 ]
+<../images/plot-convergence-GD.png, id=1025, 714.7503pt x 426.393pt>
+File: ../images/plot-convergence-GD.png Graphic file (type png)
+<use ../images/plot-convergence-GD.png>
+Package pdftex.def Info: ../images/plot-convergence-GD.png  used on input line 624.
+(pdftex.def)             Requested size: 309.77368pt x 184.80281pt.
+
 
 [36
 
-]
-<../images/plot-convergence-GD.png, id=1053, 714.7503pt x 426.393pt>
-File: ../images/plot-convergence-GD.png Graphic file (type png)
-<use ../images/plot-convergence-GD.png>
-Package pdftex.def Info: ../images/plot-convergence-GD.png  used on input line 638.
-(pdftex.def)             Requested size: 309.77368pt x 184.80281pt.
+ <../images/plot-convergence-GD.png>]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 641.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 641.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 641.
 
 
 [37
 
- <../images/plot-convergence-GD.png>]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 655.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 655.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 655.
+]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 672.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 672.
 
 
 [38
 
 ]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 686.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 686.
-
 
 [39
 
@@ -961,23 +961,19 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 [51
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 943.
+
 
 [52
 
 ]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 957.
-
 
 [53
 
 ]
 
 [54
-
-]
-
-[55
 
 ]
 \tf@nav=\write6
@@ -998,18 +994,18 @@ Package rerunfilecheck Info: File `slide.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22201 strings out of 473190
- 437955 string characters out of 5705898
+ 22197 strings out of 473190
+ 437918 string characters out of 5705898
  797356 words of memory out of 5000000
- 44871 multiletter control sequences out of 15000+600000
+ 44869 multiletter control sequences out of 15000+600000
  574245 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,557b,595s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slide.pdf (55 pages, 846845 bytes).
+Output written on slide.pdf (54 pages, 843631 bytes).
 PDF statistics:
- 1709 PDF objects out of 1728 (max. 8388607)
- 1506 compressed objects within 16 object streams
- 111 named destinations out of 1000 (max. 500000)
+ 1680 PDF objects out of 1728 (max. 8388607)
+ 1480 compressed objects within 15 object streams
+ 109 named destinations out of 1000 (max. 500000)
  116 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -124,20 +124,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Ridge Regression: Why the scaling?}
-    \textbf{Why the scaling?}
-    
-    Introducing scaling factors is convenient for mathematical and numerical stability:
-    
-    \vspace{0.3cm}
-    \begin{itemize}
-        \item \textbf{The factor $\frac{1}{2}$}: Cancels out the exponent $2$ when computing the gradient $\nabla f(w)$ and the derivative of $\|w\|^2$, simplifying to a linear form without constant multipliers.
-        
-        \vspace{0.3cm}
-        \item \textbf{The factor $\frac{1}{n}$}: Normalizes the error term with respect to the dataset size. This ensures that the magnitude of the loss is independent by the number of samples $n$. This allows the same learning rates to be effective regardless we use the full dataset or a smaller subset.
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{Gradient and Hessian Matrix}
     Since $f(w)$ is differentiable, we can compute the first-order derivative (the Gradient) and second-order derivative (the Hessian matrix) to minimize the objective function.
 
