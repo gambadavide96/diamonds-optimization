@@ -95,8 +95,8 @@
     \vspace{0.3cm}
     \textbf{Impact on Optimization:}
     \begin{itemize}
-        \item This structural redundancy results in a feature matrix $X$ with a very small minimum eigenvalue ($\lambda_{\min} \approx 0$), representing the minimum curvature of the loss function. 
-        \item Consequently, the underlying optimization problem becomes highly \textbf{ill-conditioned}. It is particularly challenging for gradient-based methods because it creates flat valleys in the loss function landscape.
+        \item Given the high multicollinearity among the features in the feature matrix $X$, we expect the loss landscape exhibit flat and elongated valleys.
+        \item Consequently, the optimization problem is \textbf{ill-conditioned} and particularly challenging for gradient-based methods.
     \end{itemize}
 \end{frame}
 
@@ -131,7 +131,6 @@
     \textbf{The Gradient $\nabla f(w)$}
     
     The gradient represents the steepest ascent direction of the function. 
-    To find the minimum, optimization algorithms like Gradient Descent move in the opposite direction of the gradient. 
     
     Let's expand the vector notation of the objective function:
     $$
