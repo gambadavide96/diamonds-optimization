@@ -312,7 +312,7 @@
 \end{frame}
 
 \begin{frame}{Ridge Regression - Properties}
-    \small
+    
     \textbf{4. Strong Convexity ($\mu$-strongly convex): Yes} \\
     It is \textbf{$\mu$-Strongly Convex}.
     The curvature is "at least" $\mu$ in every direction. The function always lies \textit{above} the quadratic function:
@@ -324,9 +324,6 @@
     \begin{itemize}
         \item \textbf{Value of $\mu$:} It corresponds to the smallest eigenvalue of the Hessian matrix.
           $$\mu = \lambda_{\min}\left(\frac{1}{n}X^T X\right) + \lambda$$
-          
-        \item[] \textit{\footnotesize If the feature matrix $X$ is not full-rank, for instance, due to perfectly collinear features, the minimum eigenvalue of the OLS component $\frac{1}{n}X^T X$ is exactly $0$, meaning $\mu = \lambda$. This mathematically proves that without regularization ($\lambda=0$), the problem might not be strongly convex, which would make convergence much slower.}
-        
         \vspace{0.2cm}
         \item \textbf{Consequence:} The larger $\mu$ is, faster the algorithm will converge to the minimum.
     \end{itemize}
@@ -337,7 +334,7 @@
     We expect the regularization parameter $\lambda$ alter the geometry of our cost function. 
 
     \vspace{0.2cm}
-    Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}, which dictates the \textit{minimum curvature} of the loss landscape. By adding the quadratic penalty $\frac{\lambda}{2} \|w\|_2^2$, we are guaranteeing that the function curves upwards by at least a factor of $\lambda$ in every single direction. This means that any "flat valleys" caused by multicollinearity are physically eliminated, making the objective function narrower.
+    Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}, which dictates the \textit{minimum curvature} of the loss landscape. By adding the quadratic penalty $\frac{\lambda}{2} \|w\|_2^2$, we are guaranteeing that the function curves upwards by at least a factor of $\lambda$ in every single direction. 
 
     \vspace{0.2cm}
     \begin{figure}
