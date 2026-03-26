@@ -131,7 +131,8 @@
 \end{frame}
 
 \begin{frame}{Gradient and Hessian Matrix}
-    Since $f(w)$ is differentiable everywhere, we can compute the first-order derivative (the Gradient) and second-order derivative (the Hessian matrix).
+    Since $f(w)$ is differentiable everywhere, we can compute the first-order derivative (the Gradient) and second-order derivative (the Hessian matrix).\\[0.2cm]
+    We will use them later in optimization's algorithm and to investigate the property of $f(w)$. \\[0.2cm]
 
     \vspace{0.2cm}
     \textbf{The Gradient $\nabla f(w)$}
@@ -142,8 +143,14 @@
 \end{frame}
 
 \begin{frame}{$f(w)$ is strictly convex}
-    To investigate the convexity of our objective function, we rely on the Second-order Characterization of Convexity.\\[0.3cm] 
-    \textit{A symmetric matrix $M$ is Positive Semi-Definite if $v^T M v \ge 0$ for all vectors $v$, and Positive Definite if $v^T M v > 0$ for all non-zero vectors $v \neq 0$.}\\[0.3cm]
+    To investigate the convexity of our objective function, we rely on the Second-order Characterization of Convexity: \\[0.3cm]
+
+    \begin{itemize}
+        \item \textit{If $ \nabla^2 f(\mathbf{x}) $ exists at every point $\mathbf{x} \in \mathrm{dom}(f)$ and is symmetric. Then $f$ is convex if and only if $\mathrm{dom}(f)$ is convex, and for all $\mathbf{x} \in \mathrm{dom}(f)$, we have
+        $ \nabla^2 f(\mathbf{x}) \succeq 0 $. So $\nabla^2 f(\mathbf{x})$ is \textbf{positive semidefinite}.}
+        \item \textit{A symmetric matrix $M$ is Positive Semi-Definite if $v^T M v \ge 0$ for all vectors $v$, and Positive Definite if $v^T M v > 0$ for all non-zero vectors $v \neq 0$.}\\[0.3cm]
+
+    \end{itemize}
 
     Let's apply this definition to our Ridge Regression Hessian matrix, analyzing its quadratic form $v^T H v$ for any arbitrary non-zero vector $v \in \mathbb{R}^d$:
 
@@ -182,7 +189,7 @@
     It is \textbf{$L$-Smooth}.
     The curvature does not change abruptly and the gradient doesn't oscillate wildy, the function always lies \textit{below} a certain parabola: 
 
-    $$f(y) \le f(x) + \nabla f(w)^T (y - x) + \frac{L}{2} \|x - y\|^2 \quad \forall x,y$$
+    $$f(y) \le f(x) + \nabla f(x)^T (y - x) + \frac{L}{2} \|x - y\|^2 \quad \forall x,y$$
 
     \begin{itemize}
         \item \textbf{Value of $L$:} It corresponds to the largest eigenvalue of the Hessian matrix (the maximum curvature of the loss landscape).
@@ -198,33 +205,33 @@
     The curvature is "at least" $\mu$ in every direction. The function always lies \textit{above} the quadratic function:
 
     \vspace{-0.2cm}
-    $$f(y) \ge f(x) + \nabla f(x)^T (y - w) + \frac{\mu}{2} \|x - y\|^2 \quad \forall x,y$$
+    $$f(y) \ge f(x) + \nabla f(x)^T (y - x) + \frac{\mu}{2} \|x - y\|^2 \quad \forall x,y$$
     \vspace{-0.2cm}
 
     \begin{itemize}
         \item \textbf{Value of $\mu$:} It corresponds to the smallest eigenvalue of the Hessian matrix.
           $$\mu = \lambda_{\min}\left(\frac{1}{n}X^T X\right) + \lambda$$
         \vspace{0.2cm}
-        \item \textbf{Consequence:} $\mu$ indicates the \textit{minimum curvature} of the loss landscape.
+        \item \textbf{Consequence:} $\mu$ indicates how much the function is strongly convex.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{The effect of $L2$ regularization}
     Specifically, increasing $\lambda$ directly increases $\mu$, the \textbf{strong convexity parameter}. \\[0.1cm]
-    When we set a large $\lambda$ the minimum curvature ($\mu$) is strictly bounded away from zero, the loss function becomes steeper and no longer has any flat regions where Gradient's based method might stall.\\[0.1cm]
-    So we expect that optimization algorithms converge fastly on problems where regularization is stronger.
+    When we set a large $\lambda$, the minimum curvature ($\mu$) is strictly bounded away from zero, the loss function becomes steeper and we eliminate flat regions where Gradient's based method might stall.\\[0.1cm]
 
     \vspace{0.2cm}
     \begin{figure}
         \centering
         % Sostituisci 'geometry_effect.png' con il nome reale della tua immagine
-        \includegraphics[height=0.5\textheight]{../images/normal-parabola-ridge.png}
+        \includegraphics[height=0.6\textheight]{../images/normal-parabola-ridge.png}
     \end{figure}
 \end{frame}
 
 \begin{frame}{Dataset pre-processing steps}
     
     To prepare the dataset for our optimization algorithms, we now apply the following preprocessing steps:
+    \vspace{0.2cm}
 
     \begin{itemize}
         \item \textbf{Ordinal Encoding:} Categorical variables (\texttt{cut}, \texttt{color}, \texttt{clarity}) were mapped to integer values, preserving their inherent hierarchy. 
@@ -504,55 +511,23 @@
 \end{frame}
 
 \begin{frame}{Stochastic Gradient Descent with Mini-batches}
-    In standard Gradient Descent, computing the exact gradient requires evaluating the entire dataset (all $n$ samples) at every single step. While highly accurate, this becomes computationally prohibitive and slow for massive datasets. \textbf{Mini-batch Stochastic Gradient Descent (SGD)} addresses this bottleneck by approximating the true gradient using a much smaller, randomly selected subset of the data of size $m$ (where $m < n$). 
+    \textbf{Mini-batch Stochastic Gradient Descent (SGD)} approximate the true gradient using a much smaller, randomly selected subset of the data of size $m$ (where $m < n$). 
 
-    \vspace{0.3cm}
+    \vspace{0.2cm}
     Starting from an initial point $\mathbf{x}_0 \in \mathbb{R}^d$, at each iteration $t$ we choose a random subset of indices $\{h_1, \dots, h_m\} \subseteq \{1, \dots, N\}$ and update the weights using a learning rate $\gamma_t \ge 0$:
 
     $$\mathbf{w}_{t+1} := \mathbf{w}_t - \gamma_t \frac{1}{m} \sum_{j=1}^m \nabla f_{h_j}(\mathbf{w}_t)$$
-\end{frame}
 
-\begin{frame}{Stochastic Gradient Descent with Mini-batches}
-    To realize the random subset selection, the algorithm operates in "epochs". At the start of an epoch, the entire dataset is randomly shuffled (\texttt{np.random.permutation}). Within an epoch, a loop then sequentially iterates over this shuffled data in chunks of size \texttt{batch\_size} (our $m$). 
-    
-    \vspace{0.3cm}
-    The \texttt{minibatch\_gradient} function then calculates the scaled gradient on this small chunk, and the main loop updates the weights.
-
-    \vspace{0.3cm}
-    Just as we did in our initial experiments with standard Gradient Descent, we will establish a baseline by using a simple, "naive" constant learning rate of $\gamma = 10^{-4}$, with a \texttt{batch\_size} = 1000.
-\end{frame}
-
-\begin{frame}{Stochastic Gradient Descent with Mini-batches}
-    \small
-    Final results per $\lambda$ using Stochastic Gradient Descent with a naive learning rate ($\gamma = 0.0001$):
-
-    \vspace{0.4cm}
-    \begin{table}[]
-        \centering
-        \resizebox{0.6\textwidth}{!}{
-        \begin{tabular}{lcccc}
-            \toprule
-            \textbf{$\lambda$} & \textbf{Loss} & \textbf{$\gamma$} & \textbf{Iters} & \textbf{Time[s]} \\
-            \midrule
-            $10^{-5}$ & 0.05510 & 0.0001 & 50000 & 12.79 \\
-            $10^{-4}$ & 0.05512 & 0.0001 & 50000 & 13.10 \\
-            $10^{-3}$ & 0.05528 & 0.0001 & 50000 & 13.14 \\
-            $0.01$    & 0.05689 & 0.0001 & 50000 & 12.84 \\
-            $0.1$     & 0.07171 & 0.0001 & 50000 & 13.54 \\
-            $1.0$     & 0.16356 & 0.0001 & 31254 & 7.35 \\
-            \bottomrule
-        \end{tabular}}
-    \end{table}
-
-    \vspace{0.4cm}
-    \textbf{Observations:}
     \begin{itemize}
-        \item Results are almost identical to our initial Naive Full-Batch Gradient Descent. The algorithm still hits the hard limit of 50,000 iterations for small $\lambda$ values, getting stuck at a suboptimal loss of roughly $0.05510$ instead of reaching the true minimum ($\approx 0.04266$).
+        \item The algorithm operates in "epochs". At the start of an epoch, the entire dataset is randomly shuffled (\texttt{np.random.permutation}).
+        \item Within an epoch, a loop sequentially iterates over this shuffled data and cut them in chunks of size \texttt{batch\_size} (our $m$).
+        \item At each iteration the \texttt{minibatch\_gradient} function calculates gradient on a small chunk, and the main loop updates the weights.
     \end{itemize}
+
 \end{frame}
 
 \begin{frame}{Mini batches SGD - Decaying Learning Rate}
-    Now try doing a mini-batch SGD with a better learning rate using the fact that the objective function is $\mu$-strongly convex. From \textbf{Tame Strong Convexity}, the learning rate to use is:
+    Since our objective function is $\mu$-strongly convex. From \textbf{Tame Strong Convexity}, the learning rate to use is:
     
     $$\gamma_t = \frac{2}{\mu(t+1)}$$
     
@@ -632,10 +607,8 @@
 \end{frame}
 
 \begin{frame}{Newton's Method}
-    Until now, we have relied on first-order optimization algorithms (like Gradient Descent and its variants), which only use the gradient (the slope) to determine the direction of our next step. \textbf{Newton's Method} introduces a massive upgrade by incorporating second-order derivative information—specifically, the curvature of the loss landscape represented by the Hessian matrix $\nabla^2 f(\mathbf{x})$. 
-
-    \vspace{0.3cm}
-    By using both the slope and the curvature, the algorithm doesn't just step blindly down the hill; it models the exact shape of the convex bowl and points directly toward the bottom.
+    Until now, we have relied on first-order optimization algorithms (like Gradient Descent and its variants), which only use the gradient (the slope) to update weights. \\[0.2cm]
+    \textbf{Newton's Method} introduces a massive upgrade by incorporating second-order derivative information—specifically, the curvature of the loss landscape represented by the Hessian matrix $\nabla^2 f(\mathbf{x})$. 
 
     \vspace{0.4cm}
     Mathematically, for minimizing a convex function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ in the $d$-dimensional case, the update rule is defined as:
@@ -764,7 +737,6 @@
             Bounded Gradient Descent & 0.04966 & 10000* & 1.86 \\
             Smooth Gradient Descent & \textbf{0.04266} & 8353 & 1.56 \\
             Accelerated Gradient Descent & \textbf{0.04266} & 203 & 0.10 \\
-            Naive SGD & 0.05510 & 50000* & 12.79 \\
             Decaying Learning Rate SGD & \textbf{0.04266} & 14199 & 3.58 \\
             Newton's Method & \textbf{0.04266} & 1 & 0.006 \\
             Adagrad & \textbf{0.04266} & 42511 & 11.99 \\
@@ -790,7 +762,6 @@
             Bounded Gradient Descent & 0.16356 & 1768 & 0.32 \\
             Smooth Gradient Descent & 0.16355 & 15 & 0.01 \\
             Accelerated Gradient Descent & 0.16355 & 12 & 0.005 \\
-            Naive SGD & 0.16356 & 31254 & 7.35 \\
             Decaying Learning Rate SGD & 0.16355 & 101 & 0.04 \\
             Newton's Method & 0.16355 & 1 & 0.002 \\
             Adagrad & 0.16356 & 8292 & 1.92 \\
@@ -803,7 +774,7 @@
     \vspace{0.2cm}
     \begin{itemize}
         \item \textbf{Impact of $\lambda$ on Convergence:}\\
-        Increasing $\lambda$ helps algorithms to converge, making the optimization's problem better conditioned. A higher $\lambda$ drastically reduces iterations and execution time.
+        Increasing the regularization hyperparameter $\lambda$ helps algorithms to converge, making the optimization's problem better conditioned. A higher $\lambda$ drastically reduces iterations and execution time.
 
         \vspace{0.4cm}
         \item \textbf{Algorithm Performance Comparison:}\\
@@ -811,7 +782,7 @@
         \begin{itemize}
             \item \textbf{Newton's Method:} Converges in exactly 1 step across all $\lambda$ by leveraging second-order curvature.
             \item \textbf{Accelerated GD:} Best first-order method, can effortlessly navigates flat valleys.
-            \item \textbf{Standard GD ($1/L$):} Highly efficient for well-conditioned (high-$\lambda$) problems, but struggles heavily in flat scenarios.
+            \item \textbf{Smooth GD ($1/L$):} Highly efficient for well-conditioned (high-$\lambda$) problems, but struggles heavily in flat scenarios.
             \item \textbf{Mini-batch SGD:} Safely converges, but stochastic noise makes strict high-precision possible only when learning rate becomes very small.
             \item \textbf{Adagrad:} Auto-tunes step sizes without theoretical parameters, but the monotonically shrinking learning rate causes slow convergence.
         \end{itemize}
