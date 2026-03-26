@@ -101,8 +101,9 @@
     \vspace{0.3cm}
     \textbf{Impact on Optimization:}
     \begin{itemize}
-        \item Given the high multicollinearity among the features in the matrix $X$, we expect the loss objective landscape exhibit flat and elongated valleys.
+        \item Given the high multicollinearity among the features in the matrix $X$, we expect small eigenvalues for the matrix $X^T X$ and a loss objective landscape with flat and elongated valleys.
         \item Consequently, the optimization problem is \textbf{ill-conditioned} and particularly challenging for gradient-based methods.
+        \item We will demonstrate that we can mitigate this issue by using Ridge Regression instead of standard linear regression.
     \end{itemize}
 \end{frame}
 
@@ -654,7 +655,7 @@
 
     \vspace{0.3cm}
     \textbf{The One-Step Convergence Lemma:}\\
-    \textit{On nondegenerate quadratic functions, with any arbitrary starting point $w_0 \in \mathbb{R}^d$, Newton's method yields the exact global minimum $w^*$ in exactly one step ($w_1 = w^*$).}
+    \textit{On nondegenerate quadratic functions, with any arbitrary starting point $w_0 \in \mathbb{R}^d$, Newton's method yields the global minimum $w^*$ in exactly one step ($w_1 = w^*$).}
 
     \vspace{0.3cm}
     Because the Ridge Regression objective function satisfies the condition of a nondegenerate quadratic function (a matrix with strictly positive eigenvalues has a non-zero determinant and is therefore invertible), this experimental behavior aligns exactly with optimization theory.

@@ -1,11 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1774542227.38075 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1774542231.30732 0
+["pdflatex"] 1774543895.73589 "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" "slide.pdf" "slide" 1774543899.85315 0
   "../images/correlations_matrix.png" 1715172335.78666 179293 543634b9652f74b2417448ead4a9fd89 ""
   "../images/feature-distribution.png" 1773670223.98587 179384 95f498474e0882a12ac7f02f48d3a3be ""
   "../images/logo-unibg.jpg" 1773765537.88729 46556 f36a21f5339d542dbd4190b6814e3699 ""
   "../images/normal-parabola-ridge.png" 1772731355.4534 102822 824b2daf262d685faad56a6a302bb660 ""
   "../images/plot-convergence-GD.png" 1774114113.93083 56015 9e01274f1089aedc66c79237bbdeb43e ""
-  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1774542227.06798 38878 e5a0c41c2bdffd44274a5e5d292f5c53 ""
+  "/Users/davidegamba/Documents/GitHub/diamonds-optimization/latex/slide.tex" 1774543895.40797 39043 a7602cf1d3987eaff4fdcaf465a8e24e ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/fontname/texfonts.map" 1741388039 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1741388039 5466553 2748998d7db8078826afa1f272036265 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1741388039 1004 54797486969f23fa377b128694d548df ""
@@ -231,10 +231,10 @@
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1741388039 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/usr/local/Cellar/texlive/20250308_2/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346062 5b41f5f1f86715961a7a7134091efb1b ""
-  "slide.aux" 1774542231.10138 5850 dc9e78b2e67397e2a5f51b612cc5f322 "pdflatex"
-  "slide.nav" 1774542231.10352 4085 b8c8ab2e113f394f7ad8f1b22510059d "pdflatex"
-  "slide.out" 1774542228.44025 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "slide.tex" 1774542227.06798 38878 e5a0c41c2bdffd44274a5e5d292f5c53 ""
+  "slide.aux" 1774543899.64128 5850 dc9e78b2e67397e2a5f51b612cc5f322 "pdflatex"
+  "slide.nav" 1774543899.64348 4085 b8c8ab2e113f394f7ad8f1b22510059d "pdflatex"
+  "slide.out" 1774543896.78309 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "slide.tex" 1774543895.40797 39043 a7602cf1d3987eaff4fdcaf465a8e24e ""
   (generated)
   "slide.aux"
   "slide.log"
