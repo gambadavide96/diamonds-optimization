@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  26 MAR 2026 17:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  27 MAR 2026 15:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -806,7 +806,7 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
 <../images/normal-parabola-ridge.png, id=416, 1204.5pt x 803.0pt>
 File: ../images/normal-parabola-ridge.png Graphic file (type png)
 <use ../images/normal-parabola-ridge.png>
-Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line 230.
+Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line 231.
 (pdftex.def)             Requested size: 235.73119pt x 157.15625pt.
 
 
@@ -830,9 +830,9 @@ Package pdftex.def Info: ../images/normal-parabola-ridge.png  used on input line
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 336.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 337.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 336.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 337.
 
 
 [19
@@ -865,7 +865,7 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 <../images/plot-convergence-GD.png, id=750, 714.7503pt x 426.393pt>
 File: ../images/plot-convergence-GD.png Graphic file (type png)
 <use ../images/plot-convergence-GD.png>
-Package pdftex.def Info: ../images/plot-convergence-GD.png  used on input line 464.
+Package pdftex.def Info: ../images/plot-convergence-GD.png  used on input line 465.
 (pdftex.def)             Requested size: 309.77368pt x 184.80281pt.
 
 
@@ -960,13 +960,13 @@ Package rerunfilecheck Info: File `slide.out' has not changed.
 Here is how much of TeX's memory you used:
  22127 strings out of 473190
  436858 string characters out of 5705898
- 795356 words of memory out of 5000000
+ 796356 words of memory out of 5000000
  44823 multiletter control sequences out of 15000+600000
  573504 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,471b,629s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slide.pdf (42 pages, 810358 bytes).
+Output written on slide.pdf (42 pages, 810809 bytes).
 PDF statistics:
  1346 PDF objects out of 1440 (max. 8388607)
  1173 compressed objects within 12 object streams
