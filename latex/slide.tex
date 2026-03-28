@@ -181,7 +181,7 @@
 
     \vspace{0.3cm}
     \textbf{2. Lipschitz Continuous: No (Globally)} \\
-    A function $f(w)$ is globally $B$-Lipschitz if its gradients are bounded in magnitude everywhere ($\| \nabla f(w) \| \le B$). 
+    A function $f(w)$ is globally Lipschitz continuous if its gradients are bounded in norm everywhere ($\| \nabla f(w) \| \le B$). 
     Our objective function $f(w)$ is a quadratic function. As the weights $w$ can grow toward infinity, the gradient $\nabla f(w) = \frac{1}{n} X^T (Xw - y) + \lambda w$ also can grows linearly toward infinity. Because the gradient is unbounded over the entire domain $\mathbb{R}^d$, the function itself is \textbf{not globally Lipschitz continuous}.
 \end{frame}
 
@@ -367,7 +367,7 @@
 \end{frame}
 
 \begin{frame}{Gradient Descent - Assuming Bounded Gradient}
-    By making the assumption that our optimization path remains within a bounded region $\|w_0 - w^*\| \le R$, and having calculated the maximum gradient bound $B$ such that $\|\nabla f(w)\| \le B$ for all $w$, we have effectively established that our objective function is \textbf{$B$-Lipschitz continuous} within this domain. 
+    By making the assumption that our optimization path remains within a bounded region $\|w_0 - w^*\| \le R$, and having calculated the maximum gradient bound $B$ such that $\|\nabla f(w)\| \le B$ for all $w$, we have effectively established that our objective function is \textbf{Lipschitz continuous} within this domain. 
 
     \vspace{0.4cm}
     For Lipschitz continuous functions, optimization theory provides a specific, optimal step size: we can now set $\gamma$ using the formula:
@@ -420,7 +420,7 @@
           $$L = \left\| \frac{1}{n}X^T X \right\| + \lambda$$
           
         \vspace{0.2cm}
-        \item \textbf{Consequence:} This value is the \textbf{speed limit} for Gradient Descent. If we use a learning rate $\gamma > \frac{2}{L}$, the algorithm will diverge. The optimal safe step size is $1/L$.
+        \item \textbf{Consequence:} This value is the \textbf{speed limit} for Gradient Descent.The optimal step size is $1/L$.
     \end{itemize}
 \end{frame}
 
@@ -536,22 +536,22 @@
     and it decays over each iteration.
 
     \vspace{0.4cm}
-    However, applying this formula naively when our regularization parameter $\lambda$ is small leads to immediate divergence.
+    However, applying this formula directly when our regularization parameter $\lambda$ is small leads to immediate divergence.
 
     \vspace{0.2cm}
     \begin{itemize}
-        \item If $\mu$ is very small, the initial step size $\gamma_t$ becomes very large. 
-        \item This massively exceeds our theoretical $L$-smoothness "speed limit" ($2/L$), causing the algorithm to diverge.
+        \item When Ridge regularization is weak, the Hessian matrix has very small eigenvalues.
+        \item If $\mu$ is very small, the initial step size $\gamma_t$ becomes very large, causing the algorithm to diverge.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Mini batches SGD - Decaying Learning Rate}
 
-    For our smallest ridge penalization ($\lambda = 10^{-5}$), the minimum curvature of our loss function is extremely flat, resulting in $\mu \approx 0.00130$. If we plug this value into the pure \textbf{Tame Strong Convexity} formula to calculate the learning rate for our very first iteration ($t=0$), we get:
+    We can demonstrate it: for our smallest ridge penalization ($\lambda = 10^{-5}$), the minimum curvature of our loss function is extremely flat, resulting in $\mu \approx 0.00130$. If we plug this value into the pure \textbf{Tame Strong Convexity} formula to calculate the learning rate for our very first iteration ($t=0$), we get:
     $$\gamma_0 = \frac{2}{0.00130} \approx 1538$$
 
     \vspace{0.3cm}
-    This initial step size is catastrophically large. As we established earlier, the absolute maximum safe step size before an algorithm diverges is bounded by the smoothness parameter $(2/L) \approx 0.46.$ An initial step of $1538$ massively violates this theoretical "speed limit".
+    This initial step size is catastrophically large and massively violates the theoretical speed limit $(2/L) \approx 0.46$ that prevent divergence for $L$-Smooth functions.
 
     \vspace{0.3cm}
     This same issue occurs across all other small values of the ridge regularization parameter $\lambda$.
@@ -568,7 +568,7 @@
     
     \vspace{0.2cm}
     \begin{itemize}
-        \item \textbf{Initial Stability ($t=0$):} At the very first iteration, the learning rate evaluates to exactly $\frac{2}{L+\mu} < \frac{2}{L}$. This respect the theoretical optimal speed limit for smooth strongly convex functions, acting as a safety cap that prevents the algorithm from diverging, regardless of how small $\mu$ is.
+        \item \textbf{Initial Stability ($t=0$):} At the very first iteration, the learning rate evaluates to exactly $\frac{2}{L+\mu} < \frac{2}{L}$. This respect the theoretical speed limit for smooth strongly convex functions and prevents the algorithm from diverging, regardless of how small $\mu$ is.
         
         \vspace{0.3cm}
         \item \textbf{Asymptotic Convergence ($t \to \infty$):} As the iterations progress, the $L$ term becomes dominated by $\mu t$. The learning rate transitions to approximate $\frac{2}{\mu t}$, strictly adhering to the decay rate required to suppress the stochastic noise of the mini-batches and guarantee convergence to the global minimum.
