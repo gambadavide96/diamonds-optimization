@@ -12,11 +12,10 @@ The goal is to compare algorithms in terms of convergence speed, computational c
 
 - Apply and compare different optimization algorithms on **Diamonds dataset**, in order to predict diamond price:
   - Gradient Descent.
-  - Gradient Descent with optimal step-size (1/L).
-  - Stochastic Gradient Descent.
   - Mini-batch SGD.
   - Nesterov Accelerated Gradient (AGD).
   - Newton’s Method.
+  - Adagrad
 
 ## 📈 Results & Analysis
 The project compares:
