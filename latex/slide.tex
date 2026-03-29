@@ -540,8 +540,8 @@
 
     \vspace{0.2cm}
     \begin{itemize}
-        \item When Ridge regularization is weak, the Hessian matrix has very small eigenvalues.
-        \item If $\mu$ is very small, the initial step size $\gamma_t$ becomes very large, causing the algorithm to diverge.
+        \item Due to multicollinearity of the dataset, the Hessian matrix of our objective function has very small eigenvalues.
+        \item If $\mu$ is very small, the initial step size $\gamma_t$ becomes too large, causing the algorithm to diverge.
     \end{itemize}
 \end{frame}
 
@@ -551,7 +551,7 @@
     $$\gamma_0 = \frac{2}{0.00130} \approx 1538$$
 
     \vspace{0.3cm}
-    This initial step size is catastrophically large and massively violates the theoretical speed limit $(2/L) \approx 0.46$ that prevent divergence for $L$-Smooth functions.
+    This initial step size is catastrophically large and massively violates the theoretical speed limit $(2/L) \approx 0.46$ that prevents divergence for $L$-Smooth functions.
 
     \vspace{0.3cm}
     This same issue occurs across all other small values of the ridge regularization parameter $\lambda$.
@@ -571,7 +571,7 @@
         \item \textbf{Initial Stability ($t=0$):} At the very first iteration, the learning rate evaluates to exactly $\frac{2}{L+\mu} < \frac{2}{L}$. This respect the theoretical speed limit for smooth strongly convex functions and prevents the algorithm from diverging, regardless of how small $\mu$ is.
         
         \vspace{0.3cm}
-        \item \textbf{Asymptotic Convergence ($t \to \infty$):} As the iterations progress, the $L$ term becomes dominated by $\mu t$. The learning rate transitions to approximate $\frac{2}{\mu t}$, strictly adhering to the decay rate required to suppress the stochastic noise of the mini-batches and guarantee convergence to the global minimum.
+        \item \textbf{Asymptotic Convergence ($t \to \infty$):} As the iterations progress, the $L$ term becomes dominated by $\mu t$. The learning rate transitions to approximate $\frac{2}{\mu t}$, like in the original Tame Strong Convexity formula.
     \end{itemize}
 \end{frame}
 
@@ -600,8 +600,7 @@
     \vspace{0.4cm}
     \textbf{Observations:}
     \begin{itemize}
-        \item \textbf{Guaranteed Convergence:} Safely bounded initial steps eliminate chaotic bouncing, achieving perfect convergence to the exact global minimum for every $\lambda$.
-        \item \textbf{Noise Reduction:} To settle exactly at the minimum, the decaying learning rate must become extremely small, forcing thousands of tiny, cautious steps to average out mini-batch noise.
+        \item \textbf{Guaranteed Convergence:} Safely bounded initial steps eliminate chaotic bouncing, achieving perfect convergence to the exact global minimum for every $\lambda$, but the stochastic noise makes Mini-Batch SGD slower compared to Smooth-GD.
     \end{itemize}
 \end{frame}
 
@@ -716,6 +715,7 @@
     \textbf{Observations:}
     \begin{itemize}
         \item \textbf{Guaranteed Convergence:} Adagrad successfully reached the exact global minimum for all $\lambda$ values. 
+        \item \textbf{Strong $\gamma$ Decay:} The accumulation term $G_t$ drives the learning rate to zero very quickly, increasing the number of iterations required to achieve convergence.
     \end{itemize}
 \end{frame}
 
@@ -771,8 +771,8 @@
 \begin{frame}{Conclusions}
     \vspace{0.2cm}
     \begin{itemize}
-        \item \textbf{Impact of $\lambda$ on Convergence:}\\
-        Increasing the regularization hyperparameter $\lambda$ helps algorithms to converge, making the optimization's problem better conditioned. A higher $\lambda$ drastically reduces iterations and execution time.
+        \item \textbf{Impact of $\lambda$ on Convergence:}
+        Increasing the regularization hyperparameter $\lambda$ makes the objective function more strongly convex and the optimization's problem becomes better conditioned. Helps algorithms to converge and drastically reduces iterations and execution time.
 
         \vspace{0.4cm}
         \item \textbf{Algorithm Performance Comparison:}\\
@@ -781,7 +781,7 @@
             \item \textbf{Newton's Method:} Converges in exactly 1 step across all $\lambda$ by leveraging second-order curvature.
             \item \textbf{Accelerated GD:} Best first-order method, can effortlessly navigates flat valleys.
             \item \textbf{Smooth GD ($1/L$):} Highly efficient for well-conditioned (high-$\lambda$) problems, but struggles heavily in flat scenarios.
-            \item \textbf{Mini-batch SGD:} Safely converges, but stochastic noise makes strict high-precision possible only when learning rate becomes very small.
+            \item \textbf{Mini-batch SGD:} Safely converges to the minimum, but its noisy updates make it less efficient than the deterministic Smooth-GD.
             \item \textbf{Adagrad:} Auto-tunes step sizes without theoretical parameters, but the monotonically shrinking learning rate causes slow convergence.
         \end{itemize}
     \end{itemize}
